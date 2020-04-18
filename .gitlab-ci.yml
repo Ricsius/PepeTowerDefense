@@ -5,14 +5,14 @@ variables:
 
 cache:
   key: maven-build
-  paths:
+  paths: .m2/repository
     - .m2/repository
 
 build:
   stage: build
-  script:
+  script: mvn compile
     - mvn compile
 test:
   stage: test
-  script:
+  script: mvn test
     - mvn test
