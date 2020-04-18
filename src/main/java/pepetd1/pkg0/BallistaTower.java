@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package pepetd1.pkg0;
+package pepetd1.pkg0;
 
 import pepetd1.pkg0.Tower;
 import java.awt.Image;
