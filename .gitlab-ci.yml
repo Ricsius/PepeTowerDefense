@@ -7,6 +7,7 @@ cache:
   key: maven-build
   paths:
     - .m2/repository
+    - target/
 
 build:
   stage: build
