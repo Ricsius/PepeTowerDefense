@@ -1,12 +1,12 @@
 image: maven:latest
 
 variables:
-  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository/pepetd1/pkg0"
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
 
 cache:
   key: maven-build
   paths:
-    - .m2/repository/pepetd1/pkg0
+    - .m2/repository
 
 build:
   stage: build
@@ -16,4 +16,3 @@ test:
   stage: test
   script:
     - mvn test
-
