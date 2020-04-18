@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pepetd1.pkg0;
+//package pepetd1.pkg0;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -46,7 +46,7 @@ public class GameEngine extends JPanel{
     private boolean delete;
     private boolean upgrade;
     
-    private final int TOWER_COST = 130; //egyelõre itt van, de bele lesz rakva a toronyba
+    private final int TOWER_COST = 130; //egyelre itt van, de bele lesz rakva a toronyba
     
     public GameEngine(){
         super();
@@ -154,7 +154,7 @@ public class GameEngine extends JPanel{
         movementTimer.start();
     }
     
-    //van jobb megoldás tuti, csak nem jutott eszembe jobb hirtelen
+    //van jobb megolds tuti, csak nem jutott eszembe jobb hirtelen
     public void attachMenu(MenuPanel m){
         menu = m;
         this.menu.setGold(this.level.getMoney());
@@ -194,7 +194,7 @@ public class GameEngine extends JPanel{
                 Tower tow = level.clickedInTower(x,y);
                 if(tow != null){
                     if(tow.upgrade()){
-                        level.cutMoney(50);   //csak akkor vonja le a pénzt, ha tényleg tudtunk upgradelni
+                        level.cutMoney(50);   //csak akkor vonja le a pnzt, ha tnyleg tudtunk upgradelni
                     }else{
                         System.out.println("Maxos a torony");
                     }
