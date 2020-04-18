@@ -1,16 +1,19 @@
-image: java:latest
+image: maven:latest
 
-stages:
-  - build
-  - execute
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+cache:
+  key: maven-build
+  paths:
+    - .m2/repository
 
 build:
   stage: build
-  script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac HelloWorld.java
-  artifacts:
-    paths:
-     - HelloWorld.*
+  script:
+    - mvn compile
+test:
+  stage: test
+  script:
+    - mvn test
 
-execute:
-  stage: execute
-  script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java HelloWorld
