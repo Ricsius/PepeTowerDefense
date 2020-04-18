@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pepetd1.pkg0;
+//package pepetd1.pkg0;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -385,7 +385,7 @@ public class Level {
         this.playerMoney += m;
     }
     
-    //teszteléshez kellenek
+    //tesztelshez kellenek
     
     public ArrayList getTowers() {
     	return this.towers;
