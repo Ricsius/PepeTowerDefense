@@ -22,7 +22,7 @@ public class TowerTest {
 	public void testInside1() {	
 		Tower tower = new Tower(80,280,null,0,0,0);
 		
-		Assert.assertTrue("Benne lv pont valban benne van",tower.inside(0, 402));
+		Assert.assertTrue("Benne lv pont valban benne van",tower.inside(133, 402));
 	}
 	
 	@Test
