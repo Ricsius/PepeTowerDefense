@@ -15,7 +15,7 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("X tengelyen negatív irányba", tb.getX() == 5);
+		Assert.assertTrue("X tengelyen negativ iranyba", tb.getX() == 5);
 	}
 	
 	@Test
@@ -25,7 +25,7 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("X tengelyen pozitív irányba", tb.getX() == -5);
+		Assert.assertTrue("X tengelyen pozitiv iranyba", tb.getX() == -5);
 	}
 	
 	@Test
@@ -35,7 +35,7 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Y tengelyen negatív irányba", tb.getY() == 5);
+		Assert.assertTrue("Y tengelyen negativ iranyba", tb.getY() == 5);
 	}
 	
 	@Test
@@ -45,7 +45,7 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Y tengelyen negatív irányba", tb.getY() == -5);
+		Assert.assertTrue("Y tengelyen negativ iranyba", tb.getY() == -5);
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Y pozitív, X negatív", tb.getY() == -5 && tb.getX() == 5);
+		Assert.assertTrue("Y pozitiv, X negativ", tb.getY() == -5 && tb.getX() == 5);
 	}
 	
 	@Test
@@ -65,7 +65,7 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Y negatív, X negatív", tb.getY() == 5 && tb.getX() == 5);
+		Assert.assertTrue("Y negativ, X negativ", tb.getY() == 5 && tb.getX() == 5);
 	}
 	
 	@Test
@@ -75,7 +75,7 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Y negatív, X pozitív", tb.getY() == 5 && tb.getX() == -5);
+		Assert.assertTrue("Y negativ, X pozitiv", tb.getY() == 5 && tb.getX() == -5);
 	}
 	
 	@Test
@@ -85,18 +85,18 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Y pozitív, X negatív", tb.getY() == -5 && tb.getX() == -5);
+		Assert.assertTrue("Y pozitiv, X negativ", tb.getY() == -5 && tb.getX() == -5);
 	}
 	
 	@Test
-	public void testFollowTarget6() { //a méretek mindig lehetõvé teszik az eltalálást
-		//(itt ha a Towerbullet-nek a szélessége 2 lenne, akkor nem találná el)
+	public void testFollowTarget6() { //a mï¿½retek mindig lehetï¿½vï¿½ teszik az eltalï¿½lï¿½st
+		//(itt ha a Towerbullet-nek a szï¿½lessï¿½ge 2 lenne, akkor nem talï¿½lnï¿½ el)
 		Pepe target = new Pepe(0,0,5,5,null);
 		TowerBullet tb = new TowerBullet(3,0,5,5,null,5,target); 
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Túlmegy rajta, azaz eltalálja", tb.getX() == -2 && tb.meet(target));
+		Assert.assertTrue("Tulmegy rajta, azaz eltalalja", tb.getX() == -2 && tb.meet(target));
 	}
 	
 	@Test
@@ -106,18 +106,18 @@ public class TowerBulletTest {
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Azonos koordináták",
+		Assert.assertTrue("Azonos koordinatak",
 				tb.getX() == 0 && tb.getY() == 0 && tb.meet(target));
 	}
 	
 	@Test
-	public void testFollowTarget8() { //a méretek mindig lehetõvé teszik az eltalálást
+	public void testFollowTarget8() { //a mï¿½retek mindig lehetï¿½vï¿½ teszik az eltalï¿½lï¿½st
 		Pepe target = new Pepe(0,0,5,5,null);
 		TowerBullet tb = new TowerBullet(5,0,5,5,null,5,target); 
 		
 		tb.followTarget();
 		
-		Assert.assertTrue("Pontosan a target koordinátáira megy, azaz eltalálja",
+		Assert.assertTrue("Pontosan a target koordinataira megy, azaz eltalalja",
 				tb.getX() == 0 && tb.meet(target));
 	}
 }

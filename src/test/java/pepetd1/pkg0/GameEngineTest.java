@@ -13,7 +13,7 @@ public class GameEngineTest {
 		int naked = ge.getLevel().getNakeds().size();
 		ge.getLevel().getNakeds().remove(0);
 		ge.restart();
-		Assert.assertTrue("Adatok megváltoztatása után restart visszaállítja az értékeket",
+		Assert.assertTrue("Adatok megvaltoztatasa utan restart visszaallitja az ertekeket",
 				naked == ge.getLevel().getNakeds().size());
 	}
 	
@@ -35,7 +35,7 @@ public class GameEngineTest {
 		Assert.assertTrue("PlacementSpotra kattintunk", money == ge.getLevel().getMoney());
 	}
 	
-	//100 goldot kapunk torony törlésért (ha lvl 1-es)
+	//100 goldot kapunk torony tï¿½rlï¿½sï¿½rt (ha lvl 1-es)
 	@Test
 	public void testClick_delete3() {
 		GameEngine ge = new GameEngine();
@@ -64,7 +64,7 @@ public class GameEngineTest {
 		Assert.assertTrue("PlacementSpotra kattintunk", money == ge.getLevel().getMoney());
 	}
 	
-	//50 goldba kerül az upgrade
+	//50 goldba kerï¿½l az upgrade
 	@Test
 	public void testClick_Upgrade3() {
 		GameEngine ge = new GameEngine();
@@ -75,7 +75,7 @@ public class GameEngineTest {
 		Assert.assertTrue("Toronyra kattintunk", money == ge.getLevel().getMoney()+50);
 	}
 	
-	//azért csak Ice-ra teszteltem, mert a többi torony is ugyanannyit von le (egyelõre)
+	//azï¿½rt csak Ice-ra teszteltem, mert a tï¿½bbi torony is ugyanannyit von le (egyelï¿½re)
 	@Test
 	public void testClick_Build1() {
 		GameEngine ge = new GameEngine();
@@ -85,7 +85,7 @@ public class GameEngineTest {
 		Assert.assertTrue("Semmire sem kattintunk", money == ge.getLevel().getMoney());
 	}
 	
-	//130-ba kerül egy tower
+	//130-ba kerï¿½l egy tower
 	@Test
 	public void testClick_Build2() {
 		GameEngine ge = new GameEngine();

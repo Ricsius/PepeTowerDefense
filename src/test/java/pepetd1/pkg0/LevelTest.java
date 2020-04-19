@@ -21,7 +21,7 @@ public class LevelTest {
 	@Test
 	public void testConstructor2() throws IOException {
 		Level lvl = new Level("data/level_test1.txt","data/levelPepes_test.txt");
-			Assert.assertTrue("Üres level",lvl.getSpots().isEmpty());
+			Assert.assertTrue("ures level",lvl.getSpots().isEmpty());
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ public class LevelTest {
 		try {
 			lvl = new Level("level_test2","levelPepes");
 			lvl.towerShoot();
-			Assert.assertTrue("Több torony",lvl.getBullets().size() == 12312);
+			Assert.assertTrue("Tï¿½bb torony",lvl.getBullets().size() == 12312);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}			
@@ -125,18 +125,18 @@ public class LevelTest {
 		}
 	}
 	
-	//csak IceTower-re nézem meg, mivel a többinél is ugyanazt csinálja a program
+	//csak IceTower-re nï¿½zem meg, mivel a tï¿½bbinï¿½l is ugyanazt csinï¿½lja a program
 	@Test
 	public void testCreateTower() throws IOException {
 		Level lvl = new Level("data/level.txt","data/levelPepes_test.txt");
 		lvl.cutMoney(800);
-		Assert.assertNull("Nincs rá pénz",lvl.createIceTower(0, 0));
+		Assert.assertNull("Nincs ra penz",lvl.createIceTower(0, 0));
 	}
 	
 	@Test
 	public void testCreateTower2() throws IOException {
 		Level lvl = new Level("data/level.txt","data/levelPepes_test.txt");
-		Assert.assertNotNull("Van rá pénz",lvl.createIceTower(0, 0));
+		Assert.assertNotNull("Van ra penz",lvl.createIceTower(0, 0));
 	}
 	
 	@Test
@@ -144,7 +144,7 @@ public class LevelTest {
 		Level lvl = new Level("data/level_test1.txt","data/levelPepes_test.txt");
 		lvl.createBallistaTower(0, 0);
 		lvl.deleteTower(new Tower(0,0,null,0,0,0));
-		Assert.assertTrue("Törlünk egy tornyot, helyére rakunk egy Spotot",lvl.getSpots().size() == 1);
+		Assert.assertTrue("Torlunk egy tornyot, helyere rakunk egy Spotot",lvl.getSpots().size() == 1);
 	}
 
 }

@@ -7,33 +7,33 @@ import pepetd1.pkg0.StructurePlacementSpot;
 
 public class StructurePlacementSpotTest {
 	
-	//a kirajzolás torzítása miatt el van "tolódva" az inside függvény, eszerint az y értéke nem 120,
+	//a kirajzolï¿½s torzï¿½tï¿½sa miatt el van "tolï¿½dva" az inside fï¿½ggvï¿½ny, eszerint az y ï¿½rtï¿½ke nem 120,
 	//hanem 160 (az inside() szerint)
 	@Test
 	public void testInside1(){
 		StructurePlacementSpot spot = new StructurePlacementSpot(80,120,null);
 		
-		Assert.assertTrue("Benne lévõ pont tényleg benne van",spot.inside(90,170));
+		Assert.assertTrue("Benne levo pont tenyleg benne van",spot.inside(90,170));
 	}
 	
 	@Test
 	public void testInside2(){
 		StructurePlacementSpot spot = new StructurePlacementSpot(80,120,null);
 		
-		Assert.assertTrue("Határán lévõ pont tényleg benne van",spot.inside(80,160)); //bal felsõ sarok
+		Assert.assertTrue("Hataron levo pont tenyleg benne van",spot.inside(80,160)); //bal felsï¿½ sarok
 	}
 	
 	@Test
 	public void testInside2_2(){
 		StructurePlacementSpot spot = new StructurePlacementSpot(80,120,null);
 		
-		Assert.assertTrue("Határán lévõ pont tényleg benne van",spot.inside(92,160)); //felsõ oldal
+		Assert.assertTrue("Hataron levo pont tenyleg benne van",spot.inside(92,160)); //felsï¿½ oldal
 	}
 	
 	@Test
 	public void testInside3(){
 		StructurePlacementSpot spot = new StructurePlacementSpot(80,120,null);
 		
-		Assert.assertFalse("Külsõ pont nincsen benne",spot.inside(0,0));
+		Assert.assertFalse("Kulso pont nincsen benne",spot.inside(0,0));
 	}	
 }
