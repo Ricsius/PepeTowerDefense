@@ -9,10 +9,6 @@ import java.awt.Image;
 import java.io.IOException;
 import java.util.HashSet;
 
-/**
- *
- * @author Hege
- */
 public class Pepe extends Sprite{
     private double vely;
     private double velx;
@@ -157,3 +153,4 @@ public class Pepe extends Sprite{
     public void addWeakness(ElementalType elemental) {
     	this.vulnerableAgainst.add(elemental);
     }
+}
