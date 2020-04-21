@@ -113,7 +113,7 @@ public class Pepe extends Sprite{
         return this.alive;
     }
     
-    public void takeDamage(int damage, ElementalTypeClass type){
+    public void takeDamage(int damage, ElementalType type){
         if(resistantAgaints.contains(type)){
             damage /= this.elementalOffset;
         }

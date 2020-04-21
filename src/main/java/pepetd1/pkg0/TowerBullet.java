@@ -15,7 +15,7 @@ public class TowerBullet extends Sprite{
     int VEL = 5;
     
     private int dmg;
-    private ElementalTypeClass elementalType;
+    private ElementalType elementalType;
     private Pepe target;
     public TowerBullet(int x, int y, int width, int height, Image image, int dmg, Pepe target){
         super(x, y, width, height, image);
