@@ -9,11 +9,9 @@ package pepetd1.pkg0;
  *
  * @author Hege
  */
-public abstract class ElementalTypeClass {
-    public enum ElementalType {
-        PHYSICAL,
-        FIRE,
-        ICE,
-        ELECTRIC
-  }
+  public enum ElementalType {
+      PHYSICAL,
+      FIRE,
+      ICE,
+      ELECTRIC
 }
