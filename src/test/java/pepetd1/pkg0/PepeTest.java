@@ -3,6 +3,7 @@ package test.pepetd1.pkg0;
 import org.junit.Assert;
 import org.junit.Test;
 
+import pepetd1.pkg0.ElementalType;
 import pepetd1.pkg0.Pepe;
 
 public class PepeTest {
