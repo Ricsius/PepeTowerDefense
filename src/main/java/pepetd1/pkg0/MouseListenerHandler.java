@@ -22,9 +22,15 @@ public class MouseListenerHandler extends JFrame implements MouseListener{
         this.engine = ge;
     }
     
+    public void addGameEngine(GameEngine gameEngine){
+        this.engine = gameEngine;
+    }
+    
     @Override
-    public void mouseClicked(MouseEvent e) {  
-        engine.click(e.getX(), e.getY());
+    public void mouseClicked(MouseEvent e) {
+        if(engine != null){
+            engine.click(e.getX(), e.getY());
+        }
         //System.out.println("Mouse");
     }  
     @Override
