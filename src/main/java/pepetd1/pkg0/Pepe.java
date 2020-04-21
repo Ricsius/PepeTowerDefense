@@ -17,10 +17,11 @@ public class Pepe extends Sprite{
     private double vely;
     private double velx;
     private int health;
+    private int elementalOffset = 2;
     
     //private HashSet<Debuff> debuffs;
-    //private HashSet<ElementalType> resistantAgaints;
-    //private HashSet<ElementalType> vaulnarableAgainst;
+    private HashSet<ElementalType> resistantAgaints;
+    private HashSet<ElementalType> vaulnarableAgainst;
     private int moneyReward;
     private int pathIndex;
     protected AnimationHandler animationHandler;
@@ -112,14 +113,22 @@ public class Pepe extends Sprite{
         return this.alive;
     }
     
-    public void takeDamage(int damage){
+    public void takeDamage(int damage, ElementalTypeClass type){
+        if(resistantAgaints.has(type)){
+            damage /= this.elementalOffset;
+        }
+        else if(vaulnarableAgainst.has(type)){
+            damage *= this.elementalOffset;
+        }
+
     	if(damage >=0) {
             this.health -= damage;
             if(health <= 0){
                 this.death();
             }	
     	}
-    }//, ElementalTypeClass Damage){}
+    }
+    //, ElementalTypeClass Damage){}
     //public void applyDebuff(Debuff debuff){}
     //public void removeDebuff(Debuff debuff){}
     public void death(){

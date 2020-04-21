@@ -46,7 +46,7 @@ public class TowerBullet extends Sprite{
             this.y -= VEL;
         }
         if(this.meet(this.getTarget())){
-            this.getTarget().takeDamage(this.getDamage());
+            this.getTarget().takeDamage(this.getDamage(), this.elementalType);
             System.out.println("take damage");
             return true;
         }
