@@ -27,6 +27,20 @@ public class Pepe extends Sprite{
     protected AnimationHandler animationHandler;
     private boolean alive;
     
+public class Pepe extends Sprite{
+    private double vely;
+    private double velx;
+    private int health;
+    private int elementalOffset = 2;
+    
+    //private HashSet<Debuff> debuffs;
+    private HashSet<ElementalType> resistantAgaints;
+    private HashSet<ElementalType> vulnerableAgainst;
+    private int moneyReward;
+    private int pathIndex;
+    protected AnimationHandler animationHandler;
+    private boolean alive;
+    
     public Pepe(int x, int y, int width, int height, Image image, int health, int moneyReward, String imagePath, int frameWidth, int frameHeight) throws IOException{
         super(x,y,width,height,image);
         this.health = health;
@@ -35,8 +49,11 @@ public class Pepe extends Sprite{
         this.velx = 0;
         this.alive = true;
         animationHandler = new AnimationHandler(imagePath, frameWidth, frameHeight);
+        this.resistantAgaints = new HashSet<>();
+        this.vulnerableAgainst = new HashSet<>();
     }
     
+    //teszthez kell
     public Pepe(int x, int y, int width, int height, Image image) {
     	super(x,y,width,height,image);
     	health = 10;
@@ -45,6 +62,8 @@ public class Pepe extends Sprite{
         this.velx = 0;
         this.alive = true;
         animationHandler = null;
+        this.resistantAgaints = new HashSet<>();
+        this.vulnerableAgainst = new HashSet<>();
     }
     
     public void updatePic(String imgPath, int frameWidth, int frameHeight) throws IOException{
@@ -117,7 +136,7 @@ public class Pepe extends Sprite{
         if(resistantAgaints.contains(type)){
             damage /= this.elementalOffset;
         }
-        else if(vaulnarableAgainst.contains(type)){
+        else if(vulnerableAgainst.contains(type)){
             damage *= this.elementalOffset;
         }
 
@@ -142,4 +161,13 @@ public class Pepe extends Sprite{
     public int getHealth() {
     	return this.health;
     }
-}
+    
+    //teszthez kell
+    public void addResistance(ElementalType elemental) {
+    	this.resistantAgaints.add(elemental);
+    }
+    
+    //teszthez kell
+    public void addWeakness(ElementalType elemental) {
+    	this.vulnerableAgainst.add(elemental);
+    }
