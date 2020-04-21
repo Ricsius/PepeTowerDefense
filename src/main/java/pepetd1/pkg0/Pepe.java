@@ -21,20 +21,6 @@ public class Pepe extends Sprite{
     
     //private HashSet<Debuff> debuffs;
     private HashSet<ElementalType> resistantAgaints;
-    private HashSet<ElementalType> vaulnarableAgainst;
-    private int moneyReward;
-    private int pathIndex;
-    protected AnimationHandler animationHandler;
-    private boolean alive;
-    
-public class Pepe extends Sprite{
-    private double vely;
-    private double velx;
-    private int health;
-    private int elementalOffset = 2;
-    
-    //private HashSet<Debuff> debuffs;
-    private HashSet<ElementalType> resistantAgaints;
     private HashSet<ElementalType> vulnerableAgainst;
     private int moneyReward;
     private int pathIndex;
