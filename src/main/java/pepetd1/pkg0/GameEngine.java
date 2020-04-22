@@ -124,11 +124,20 @@ public class GameEngine extends JPanel{
                 level.towerShoot();
                 
                 if(level.nakedPepes.isEmpty() && level.wizardPepes.isEmpty() && level.sonicPepes.isEmpty() && level.tankPepes.isEmpty() && level.ricardoPepes.isEmpty()){
-                        wave++;
-                    	newWave();
+                    	if(wave != 4) {
+                    		menu.getWave().setEnabled(true);
+                    	}else {
+                            if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "YOU WON",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){               
+                            	restart();
+                            }else{
+                                System.exit(-1);
+                            }
+                    	}
+                        
                 }
             }
         });
+        
         newFrameTimer.start();
         movementTimer.start();
     }
@@ -144,20 +153,13 @@ public class GameEngine extends JPanel{
     }
     
     public void newWave() {
-    	if(wave < 5) {
-            try {
-            	level.loadPepes("data/levelPepes" + wave + ".txt");
-            } catch (IOException ex) {
-                Logger.getLogger(GameEngine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }	
-    	}
-    	else {
-            if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "YOU WON",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){
-                restart();
-            }else{
-                System.exit(-1);
-            }	
-    	}
+        	wave++;
+        	System.out.println("WAVE:" + wave);
+                try {
+                	level.loadPepes("data/levelPepes" + wave + ".txt");
+                } catch (IOException ex) {
+                    Logger.getLogger(GameEngine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }		
     }
     
     public void restart() {
@@ -348,3 +350,5 @@ public class GameEngine extends JPanel{
     }
 
 }
+
+//if(level.towerBullets.get(i).followTarget()) level.towerBullets.remove(i);     
