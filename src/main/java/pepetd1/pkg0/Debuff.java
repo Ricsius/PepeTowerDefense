@@ -3,19 +3,29 @@ public class Debuff{
     private int maxDuration;
     private int currentDuration;
     private int decreaseSpeed = 5;
-    private int tickTime;
+    private int maxTickTime;
+    private int currentTickTime;
     
     public Debuff(ElementalType type){
         this.type = type;
 
         switch (this.type){
             case FIRE:
+                this.maxDuration = 30;
+                this.maxTickTime = 3;
                 break;
             case ICE:
+                this.maxDuration = 30;
+                this.maxTickTime = this.maxDuration;
                 break;
             case ELECTRIC:
+                this.maxDuration = 30;
+                this.maxTickTime = this.maxDuration;
                 break;
         }
+
+        this.currentDuration = this.maxDuration;
+        this.currentTickTime = this.maxTickTime;
     }
 
     public void update(){
@@ -23,12 +33,13 @@ public class Debuff{
         this.tickTime -= this.decreaseSpeed;
 
         if(tickTime <= 0){
+            tickTime = maxTickTime;
         }
     }
 
     public void reset(){
         this.currentDuration = this.maxDuration;
-        this.tickTime = this.maxDuration;
+        this.tickTime = this.maxTickTime;
     }
 
     public ElementalType getType(){
