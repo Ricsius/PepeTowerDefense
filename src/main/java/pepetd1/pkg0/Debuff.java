@@ -32,10 +32,10 @@ public class Debuff{
 
     public void update(){
         this.currentDuration -= this.decreaseSpeed;
-        this.tickTime -= this.decreaseSpeed;
+        this.currentTickTime -= this.decreaseSpeed;
 
-        if(tickTime <= 0){
-            tickTime = maxTickTime;
+        if(this.currentTickTime <= 0){
+            this.currentTickTime = maxTickTime;
         }
     }
 
