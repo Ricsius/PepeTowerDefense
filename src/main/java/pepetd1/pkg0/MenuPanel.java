@@ -172,7 +172,6 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(true);
             upgrade.setEnabled(true);
-            wave.setEnabled(true);
         }
     });
     
@@ -186,7 +185,6 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(true);
             upgrade.setEnabled(true);
-            wave.setEnabled(true);
         }
     });
     
@@ -200,7 +198,6 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(true);
             upgrade.setEnabled(true);
-            wave.setEnabled(true);
         }
     });
     
@@ -214,7 +211,6 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(false);
             delete.setEnabled(true);
             upgrade.setEnabled(true);
-            wave.setEnabled(true);
         }
     });
     
@@ -228,7 +224,6 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(false);
             upgrade.setEnabled(true);
-            wave.setEnabled(true);
         }
     });
         
@@ -242,24 +237,15 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(true);
             upgrade.setEnabled(false);
-            wave.setEnabled(true);
         }
     });
-    upgrade.addActionListener(new ActionListener() {
+    wave.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            engine.setUpgrade();
-            ballistaButton.setEnabled(true);
-            fireButton.setEnabled(true);
-            iceButton.setEnabled(true);
-            teslaButton.setEnabled(true);
-            delete.setEnabled(true);
-            upgrade.setEnabled(true);
+            engine.newWave();
             wave.setEnabled(false);
         }
     });
- 
-    	
 
     
 	    JLabel infBallista = new JLabel(("<html><b>Cost: 130</b><br> <br><b>Upgrade cost: 50</b></html>"));
@@ -337,4 +323,10 @@ public class MenuPanel extends JPanel{
     public void setGold(int g){
         this.infoGold.setText(Integer.toString(g));
     }
+    
+    public JButton getWave() {
+    	return this.wave;
+    }
 }
+
+
