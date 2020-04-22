@@ -41,7 +41,9 @@ public class TeslaTower extends Tower{
             Pepe target = targetQueue.get(0);
             TowerBullet towerBullet = null;
             if(currentRechargeTime != rechargeTime){
-
+                if(currentRechargeTime > rechargeTime){
+                    currentRechargeTime = 0;
+                }
             }else{
                 Image image = new ImageIcon("data/Arrow.png").getImage();
                 if(target.getX() < this.x){
