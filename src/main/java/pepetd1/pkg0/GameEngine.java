@@ -84,7 +84,7 @@ public class GameEngine extends JPanel{
                     }
                 }
                 for(int i = 0; i < level.wizardPepes.size(); i++){
-                    //level.wizardPepes.get(i).nextPic();
+                    level.wizardPepes.get(i).nextPic();
                     level.inRange(level.wizardPepes.get(i));
                     if(!level.wizardPepes.get(i).isAlive()){
                         level.addMoney(level.wizardPepes.get(i).getMoneyReward());
@@ -92,7 +92,7 @@ public class GameEngine extends JPanel{
                     }
                 }
                 for(int i = 0; i < level.sonicPepes.size(); i++){
-                    //level.sonicPepes.get(i).nextPic();
+                    level.sonicPepes.get(i).nextPic();
                     level.inRange(level.sonicPepes.get(i));
                     if(!level.sonicPepes.get(i).isAlive()){
                         level.addMoney(level.sonicPepes.get(i).getMoneyReward());
@@ -100,7 +100,7 @@ public class GameEngine extends JPanel{
                     }
                 }
                 for(int i = 0; i < level.tankPepes.size(); i++){
-                    //level.tankPepes.get(i).nextPic();
+                    level.tankPepes.get(i).nextPic();
                     level.inRange(level.tankPepes.get(i));
                     if(!level.tankPepes.get(i).isAlive()){
                         level.addMoney(level.tankPepes.get(i).getMoneyReward());
@@ -115,39 +115,17 @@ public class GameEngine extends JPanel{
                         level.ricardoPepes.remove(level.ricardoPepes.get(i));                        
                     }
                 }
-                /*for(WizardPepe wizardPepe : level.wizardPepes){
-                    //wizardPepe.nextPic();
-                    level.inRange(wizardPepe);
-                    if(!wizardPepe.isAlive()){
-                        level.addMoney(wizardPepe.getMoneyReward());
-                    }                    
-                }
-                for(SonicPepe sonicPepe : level.sonicPepes){
-                    //sonicPepe.nextPic();
-                    level.inRange(sonicPepe);
-                    if(!sonicPepe.isAlive()){
-                        level.addMoney(sonicPepe.getMoneyReward());
-                    } 
-                }
-                for(TankPepe tankPepe : level.tankPepes){
-                    //nakedPepe.nextPic();
-                    level.inRange(tankPepe);
-                    if(!tankPepe.isAlive()){
-                        level.addMoney(tankPepe.getMoneyReward());
-                    } 
-                }
-                for(RicardoPepe ricardoPepe : level.ricardoPepes){
-                    //nakedPepe.nextPic();
-                    level.inRange(ricardoPepe);
-                    if(!ricardoPepe.isAlive()){
-                        level.addMoney(ricardoPepe.getMoneyReward());
-                    } 
-                }*/
                 menu.setGold(level.getMoney());
                 
                 level.towerShoot();
-                //level.follow();
                 
+                if(level.nakedPepes.isEmpty() && level.wizardPepes.isEmpty() && level.sonicPepes.isEmpty() && level.tankPepes.isEmpty() && level.ricardoPepes.isEmpty()){
+                    if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "YOU WON",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){
+                        restart();
+                    }else{
+                        System.exit(-1);
+                    }
+                }
             }
         });
         newFrameTimer.start();
@@ -289,25 +267,58 @@ public class GameEngine extends JPanel{
         
         @Override
         public void actionPerformed(ActionEvent ae) {
-            for(NakedPepe nakedPepe : level.nakedPepes){
-                    nakedPepe.move();
+            boolean over = false;
+            for(int i = 0; i < level.nakedPepes.size(); i++){
+                level.nakedPepes.get(i).move();
+                if(level.nakedPepes.get(i).getX() == -25 && level.nakedPepes.get(i).isAlive()){
+                    level.nakedPepes.remove(i);
+                    over = true;
+                }
             }
-            for(TankPepe tankPepe : level.tankPepes){
-                    tankPepe.move();
+            
+            for(int i = 0; i < level.tankPepes.size(); i++){
+                level.tankPepes.get(i).move();
+                if(level.tankPepes.get(i).getX() == -25 && level.tankPepes.get(i).isAlive()){
+                    level.tankPepes.remove(i);
+                    over = true;
+                }
             }
-            for(WizardPepe wizardPepe : level.wizardPepes){
-                    wizardPepe.move();
+            
+            for(int i = 0; i < level.wizardPepes.size(); i++){
+                level.wizardPepes.get(i).move();
+                if(level.wizardPepes.get(i).getX() == -25 && level.wizardPepes.get(i).isAlive()){
+                    level.wizardPepes.remove(i);
+                    over = true;
+                }
             }
-            for(SonicPepe sonicPepe : level.sonicPepes){
-                    sonicPepe.move();
+            
+            for(int i = 0; i < level.sonicPepes.size(); i++){
+                level.sonicPepes.get(i).move();
+                if(level.sonicPepes.get(i).getX() == -25 && level.sonicPepes.get(i).isAlive()){
+                    level.sonicPepes.remove(i);
+                    over = true;
+                }
             }
-            for(RicardoPepe ricardoPepe : level.ricardoPepes){
-                    ricardoPepe.move();
+            
+            for(int i = 0; i < level.ricardoPepes.size(); i++){
+                level.ricardoPepes.get(i).move();
+                if(level.ricardoPepes.get(i).getX() == -25 && level.ricardoPepes.get(i).isAlive()){
+                    level.ricardoPepes.remove(i);
+                    over = true;
+                }
             }
+            
             for(int i = 0; i < level.towerBullets.size(); i++){
                 if(level.towerBullets.get(i).followTarget()) level.towerBullets.remove(i);     
             }
             repaint();
+            if(over){                 
+                if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "GAME OVER",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){
+                    restart();
+                }else{
+                    System.exit(-1);
+                }
+            }
         }
 
     }
