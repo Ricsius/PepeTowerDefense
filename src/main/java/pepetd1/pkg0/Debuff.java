@@ -1,4 +1,7 @@
 public class Debuff{
+
+    package pepetd1.pkg0;
+
     private ElementalType type;
     private int maxDuration;
     private int currentDuration;
