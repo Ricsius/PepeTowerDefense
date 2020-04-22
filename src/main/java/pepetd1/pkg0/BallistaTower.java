@@ -41,7 +41,9 @@ public class BallistaTower extends Tower{
             Pepe target = targetQueue.get(0);
             TowerBullet towerBullet = null;
             if(currentRechargeTime != rechargeTime){
-
+                if(currentRechargeTime > rechargeTime){
+                    currentRechargeTime = 0;
+                }
             }else{
                 Image image = new ImageIcon("data/Arrow.png").getImage();
                 Image image2 = new ImageIcon("data/ArrowLeft.png").getImage();
