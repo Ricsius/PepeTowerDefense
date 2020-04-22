@@ -42,7 +42,9 @@ public class IceTower extends Tower{
             Pepe target = targetQueue.get(0);
             TowerBullet towerBullet = null;
             if(currentRechargeTime != rechargeTime){
-
+                if(currentRechargeTime > rechargeTime){
+                    currentRechargeTime = 0;
+                }
             }else{
                 Image image = new ImageIcon("data/IceCube.png").getImage();
                 if(target.getX() < this.x){
