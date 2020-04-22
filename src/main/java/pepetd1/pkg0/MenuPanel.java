@@ -16,6 +16,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -24,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 /**
  *
@@ -37,6 +40,7 @@ public class MenuPanel extends JPanel{
     private JButton teslaButton;
     private JButton delete;
     private JButton upgrade;
+    private JButton wave;
     private JLabel gold;
     private JLabel infTower;
     private JLabel asd;
@@ -59,10 +63,17 @@ public class MenuPanel extends JPanel{
         asd = new JLabel(" ");
         infoGold = new JTextField(1);
         infoGold.setEditable(false);
-        infoGold.setPreferredSize(new Dimension(1,20));
+        infoGold.setPreferredSize(new Dimension(0,20));
         infoTower = new JTextField(3);
         infoTower.setEditable(false);
         infoTower.setPreferredSize(new Dimension(1,20));
+        
+        Font fieldFont = new Font("Arial", Font.BOLD, 20);
+        infoGold.setFont(fieldFont);
+        infoGold.setBackground(new Color(129,86,29));
+        
+        Border infoGoldborder =  BorderFactory.createLineBorder(new Color(129,86,29));
+        //infoGold.setBorder(infoGoldborder);
         
         ballistaButton = new JButton();
         fireButton = new JButton("Fire");
@@ -70,6 +81,7 @@ public class MenuPanel extends JPanel{
         teslaButton = new JButton("Tesla");
         delete = new JButton("DELETE");
         upgrade = new JButton("UPGRADE");
+        wave = new JButton("WAVE");
         
 
         Image ballistaImage = new ImageIcon("data/ballista.png").getImage();
@@ -130,6 +142,13 @@ public class MenuPanel extends JPanel{
         upgrade.setFocusPainted(false);
         upgrade.setFont(new Font("Verdana", Font.BOLD, 12));
         upgrade.setEnabled(false);
+        
+        wave.setBackground(new Color(0, 190, 0));
+        wave.setMargin(new Insets(0, 0, 0, 0));
+        wave.setForeground(Color.WHITE);
+        wave.setFocusPainted(false);
+        wave.setFont(new Font("Verdana", Font.BOLD, 12));
+        wave.setEnabled(false);
   
     ballistaButton.addActionListener(new ActionListener() {
         @Override
@@ -142,6 +161,7 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(true);
             upgrade.setEnabled(true);
+            wave.setEnabled(true);
         }
     });
     
@@ -155,6 +175,7 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(true);
             upgrade.setEnabled(true);
+            wave.setEnabled(true);
         }
     });
     
@@ -168,6 +189,7 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(true);
             upgrade.setEnabled(true);
+            wave.setEnabled(true);
         }
     });
     
@@ -181,6 +203,7 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(false);
             delete.setEnabled(true);
             upgrade.setEnabled(true);
+            wave.setEnabled(true);
         }
     });
     
@@ -194,6 +217,7 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(false);
             upgrade.setEnabled(true);
+            wave.setEnabled(true);
         }
     });
         
@@ -207,31 +231,81 @@ public class MenuPanel extends JPanel{
             teslaButton.setEnabled(true);
             delete.setEnabled(true);
             upgrade.setEnabled(false);
+            wave.setEnabled(true);
         }
     });
-    
-        /*super.add(ballistaButton);
-        super.add(fireButton);
-        super.add(iceButton);
-        super.add(teslaButton);
-        super.add(delete);
-        super.add(upgrade);
-        super.add(gold);
-        super.add(infoGold);
-        super.add(asd);*/
+ 
+    	Border blackline;
+    	blackline = BorderFactory.createLineBorder(Color.black);
 
-        //this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        Box box = Box.createVerticalBox();   // vertical box
-        box.add(ballistaButton);
-        box.add(fireButton);
-        box.add(iceButton);
-        box.add(teslaButton);
-        box.add(delete);
-        box.add(upgrade);
-        box.add(gold);
-        box.add(infoGold);
-        box.add(infTower);
-        box.add(infoTower);
+    
+	    JLabel infBallista = new JLabel(("<html><b>Cost: 130</b><br> <br><b>Upgrade cost: 50</b></html>"));
+	    infBallista.setPreferredSize(new Dimension(100,100));
+	    JLabel infFire =new JLabel(("<html><b>Cost: 130</b><br><br><b>Upgrade cost: 50</b></html>"));
+	    JLabel infIce = new JLabel(("<html><b>Cost: 130</b><br><br><b>Upgrade cost: 50</b></html>"));
+	    JLabel infTesla = new JLabel(("<html><b>Cost: 130</b><br><br><b>Upgrade cost: 50</b></html>"));
+    
+        Box box = Box.createVerticalBox(); // vertical box
+        JLabel Empty = new JLabel("");
+        Box boxB = Box.createHorizontalBox();
+        Box boxF = Box.createHorizontalBox();
+        Box boxI = Box.createHorizontalBox();
+        Box boxT = Box.createHorizontalBox();
+        Box boxBut = Box.createHorizontalBox();
+        Box boxGold = Box.createHorizontalBox();
+        Box boxinfoG = Box.createHorizontalBox();
+        Box boxinfoT = Box.createHorizontalBox();
+        Box boxinfT = Box.createHorizontalBox();
+        
+        boxB.setBorder(blackline);
+        boxF.setBorder(blackline);
+        boxI.setBorder(blackline);
+        boxT.setBorder(blackline);
+
+        box.add(boxB);
+        box.add(Box.createRigidArea(new Dimension(0, 5)));
+        box.add(boxF);
+        box.add(Box.createRigidArea(new Dimension(0, 5)));
+        box.add(boxI);
+        box.add(Box.createRigidArea(new Dimension(0, 5)));
+        box.add(boxT);
+        box.add(Box.createRigidArea(new Dimension(0, 5)));
+        box.add(boxBut);
+        box.add(Box.createRigidArea(new Dimension(0, 5)));
+        box.add(boxGold);
+        box.add(boxinfoG);
+        box.add(boxinfT);
+        box.add(boxinfoT);
+        
+        boxB.add(ballistaButton);
+        boxB.add(infBallista);
+        
+        boxF.add(fireButton);
+        boxF.add(infFire);
+        
+        boxI.add(iceButton);
+        boxI.add(infIce);
+        
+        boxT.add(teslaButton);
+        boxT.add(infTesla);
+        
+        boxBut.add(delete);
+        boxBut.add(upgrade);
+        boxBut.add(wave);
+        
+        
+        boxGold.add(infoGold);
+        boxGold.add(gold);
+        boxGold.add(Box.createHorizontalGlue());
+        //boxinfoG.add(infoGold);  
+        //boxinfoG.add(Box.createHorizontalGlue());
+        
+        boxinfT.add(infTower);
+        boxinfT.add(Box.createHorizontalGlue());
+        boxinfoT.add(infoTower);
+        boxinfoT.add(Box.createHorizontalGlue());
+
+        
         super.add(box);
     }
     
