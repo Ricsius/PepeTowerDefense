@@ -42,7 +42,7 @@ public class LevelTest {
 	
 	@Test
 	public void testConstructor5() throws IOException {
-		Level lvl = new Level("data/level_test1.txt","data/levelPepes.txt");
+		Level lvl = new Level("data/level_test1.txt","data/levelPepes1.txt");
 			int naked = lvl.getNakeds().size();
 			int wizard = lvl.getWizards().size();
 			int tank = lvl.getTanks().size();
@@ -52,7 +52,7 @@ public class LevelTest {
 	
 	@Test
 	public void testTowerShoot() throws IOException {
-		Level lvl = new Level("data/level_test1.txt","data/levelPepes.txt");
+		Level lvl = new Level("data/level_test1.txt","data/levelPepes1.txt");
 			lvl.towerShoot();
 			Assert.assertTrue("Nincs torony",lvl.getBullets().isEmpty());		
 	}
