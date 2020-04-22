@@ -46,6 +46,8 @@ public class GameEngine extends JPanel{
     private boolean delete;
     private boolean upgrade;
     
+    private int wave;
+    
     private final int TOWER_COST = 130; //egyelre itt van, de bele lesz rakva a toronyba
     
     public GameEngine(){
@@ -59,6 +61,8 @@ public class GameEngine extends JPanel{
         tesla = false;
         delete = true;
         upgrade = false;
+        
+        wave = 1;
         
         this.menu = new MenuPanel(this);
         restart();
@@ -120,11 +124,8 @@ public class GameEngine extends JPanel{
                 level.towerShoot();
                 
                 if(level.nakedPepes.isEmpty() && level.wizardPepes.isEmpty() && level.sonicPepes.isEmpty() && level.tankPepes.isEmpty() && level.ricardoPepes.isEmpty()){
-                    if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "YOU WON",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){
-                        restart();
-                    }else{
-                        System.exit(-1);
-                    }
+                        wave++;
+                    	newWave();
                 }
             }
         });
@@ -142,9 +143,27 @@ public class GameEngine extends JPanel{
         return this.menu;
     }
     
+    public void newWave() {
+    	if(wave < 5) {
+            try {
+            	level.loadPepes("data/levelPepes" + wave + ".txt");
+            } catch (IOException ex) {
+                Logger.getLogger(GameEngine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }	
+    	}
+    	else {
+            if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "YOU WON",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){
+                restart();
+            }else{
+                System.exit(-1);
+            }	
+    	}
+    }
+    
     public void restart() {
         try {
-            level = new Level("data/level.txt", "data/levelPepes.txt");
+        	wave = 1;
+            level = new Level("data/level.txt", "data/levelPepes1.txt");
             //levelPepes = new LevelPepes("data/levelPepes.txt");
         } catch (IOException ex) {
             Logger.getLogger(GameEngine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -314,7 +333,7 @@ public class GameEngine extends JPanel{
             repaint();
             if(over){                 
                 if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "GAME OVER",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){
-                    restart();
+                	restart();
                 }else{
                     System.exit(-1);
                 }
