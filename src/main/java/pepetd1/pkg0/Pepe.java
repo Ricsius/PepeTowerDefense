@@ -14,6 +14,7 @@ public class Pepe extends Sprite{
     private double velx;
     private int health;
     private int elementalOffset = 2;
+    private int speed;
     
     //private HashSet<Debuff> debuffs;
     private HashSet<ElementalType> resistantAgaints;
@@ -57,6 +58,22 @@ public class Pepe extends Sprite{
         super.changeImage(animationHandler.getCurrentFrame());
     }
     
+    public void moveUp(){
+        this.y += this.speed;
+    }
+
+    public void moveDown(){
+        this.y -= this.speed;
+    }
+
+    public void moveLeft(){
+        this.x -= this.speed;
+    }
+
+    public void moveRight(){
+        this.x += this.speed;
+    }
+
     public void move(){
         y += vely;
         if(y == 100){
