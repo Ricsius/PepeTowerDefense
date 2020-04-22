@@ -24,6 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -44,8 +46,8 @@ public class MenuPanel extends JPanel{
     private JLabel gold;
     private JLabel infTower;
     private JLabel asd;
-    private JTextField infoGold;
-    private JTextField infoTower;
+    private JTextArea infoGold;
+    private JTextArea infoTower;
 
     private GameEngine engine;
     
@@ -61,19 +63,28 @@ public class MenuPanel extends JPanel{
         gold = new JLabel(goldImage);
         infTower = new JLabel("Information: ");
         asd = new JLabel(" ");
-        infoGold = new JTextField(1);
+        infoGold = new JTextArea(0,0);
+        JScrollPane scrollPane = new JScrollPane( infoGold );
+        scrollPane.setBackground(new Color(129,86,29));
         infoGold.setEditable(false);
-        infoGold.setPreferredSize(new Dimension(0,20));
-        infoTower = new JTextField(3);
+        //infoGold.setLineWrap(true);
+        infoTower = new JTextArea();
         infoTower.setEditable(false);
-        infoTower.setPreferredSize(new Dimension(1,20));
+        infoTower.setPreferredSize(new Dimension(20,20));
         
+        Border blackline;
+    	blackline = BorderFactory.createLineBorder(Color.black);
+    	
         Font fieldFont = new Font("Arial", Font.BOLD, 20);
+        Font fieldFont2 = new Font("Arial", Font.BOLD, 15);
         infoGold.setFont(fieldFont);
         infoGold.setBackground(new Color(129,86,29));
-        
         Border infoGoldborder =  BorderFactory.createLineBorder(new Color(129,86,29));
-        //infoGold.setBorder(infoGoldborder);
+        infoGold.setBorder(infoGoldborder);
+        scrollPane.setBorder(infoGoldborder);
+        
+        infTower.setFont(fieldFont2);
+        infoTower.setBackground(Color.LIGHT_GRAY);
         
         ballistaButton = new JButton();
         fireButton = new JButton("Fire");
@@ -234,9 +245,21 @@ public class MenuPanel extends JPanel{
             wave.setEnabled(true);
         }
     });
+    upgrade.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            engine.setUpgrade();
+            ballistaButton.setEnabled(true);
+            fireButton.setEnabled(true);
+            iceButton.setEnabled(true);
+            teslaButton.setEnabled(true);
+            delete.setEnabled(true);
+            upgrade.setEnabled(true);
+            wave.setEnabled(false);
+        }
+    });
  
-    	Border blackline;
-    	blackline = BorderFactory.createLineBorder(Color.black);
+    	
 
     
 	    JLabel infBallista = new JLabel(("<html><b>Cost: 130</b><br> <br><b>Upgrade cost: 50</b></html>"));
@@ -294,9 +317,10 @@ public class MenuPanel extends JPanel{
         boxBut.add(wave);
         
         
-        boxGold.add(infoGold);
+        boxGold.add(scrollPane);
         boxGold.add(gold);
         boxGold.add(Box.createHorizontalGlue());
+        
         //boxinfoG.add(infoGold);  
         //boxinfoG.add(Box.createHorizontalGlue());
         
@@ -304,6 +328,7 @@ public class MenuPanel extends JPanel{
         boxinfT.add(Box.createHorizontalGlue());
         boxinfoT.add(infoTower);
         boxinfoT.add(Box.createHorizontalGlue());
+        
 
         
         super.add(box);
