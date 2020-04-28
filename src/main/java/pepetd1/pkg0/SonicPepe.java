@@ -14,6 +14,6 @@ import java.io.IOException;
  */
 public class SonicPepe extends Pepe{
     public SonicPepe(int x, int y, int width, int height, Image image, int health, int moneyReward) throws IOException{
-        super(x,y,width,height,image,health,moneyReward, "data/basicPepe2.png", 70, 90);
+        super(x,y,width,height,image,health,moneyReward, "data/sonicpepe.png", 108, 100);
     }
 }
