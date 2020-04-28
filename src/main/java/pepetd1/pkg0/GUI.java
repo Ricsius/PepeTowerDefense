@@ -79,7 +79,7 @@ public class GUI{
                 frame.addGameEngine(gameEngine);
                 frame.getContentPane().add(gameEngine);
                 frame.getContentPane().add(BorderLayout.EAST,gameEngine.getMenu());
-                frame.setPreferredSize( new Dimension(900, 600));
+                frame.setPreferredSize( new Dimension(950, 600));
                 frame.pack();
                 frame.setVisible(true);
             }
