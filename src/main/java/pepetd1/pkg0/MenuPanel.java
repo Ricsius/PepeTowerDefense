@@ -43,6 +43,7 @@ public class MenuPanel extends JPanel{
     private JButton delete;
     private JButton upgrade;
     private JButton wave;
+    private JButton exit;
     private JLabel gold;
     private JLabel infTower;
     private JLabel asd;
@@ -93,6 +94,7 @@ public class MenuPanel extends JPanel{
         delete = new JButton("DELETE");
         upgrade = new JButton("UPGRADE");
         wave = new JButton("WAVE");
+        exit = new JButton("EXIT");
         
 
         Image ballistaImage = new ImageIcon("data/ballista.png").getImage();
@@ -160,6 +162,13 @@ public class MenuPanel extends JPanel{
         wave.setFocusPainted(false);
         wave.setFont(new Font("Verdana", Font.BOLD, 12));
         wave.setEnabled(false);
+        
+        exit.setBackground(new Color(0,0,0));
+        exit.setMargin(new Insets(0, 0, 0, 0));
+        exit.setForeground(Color.WHITE);
+        exit.setFocusPainted(false);
+        exit.setFont(new Font("Verdana", Font.BOLD, 18));
+        exit.setEnabled(true);
   
     ballistaButton.addActionListener(new ActionListener() {
         @Override
@@ -246,6 +255,13 @@ public class MenuPanel extends JPanel{
             wave.setEnabled(false);
         }
     });
+    
+    exit.addActionListener(new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+            System.exit(-1);
+        }
+    });
 
     
 	    JLabel infBallista = new JLabel(("<html><b>Cost: 130</b><br> <br><b>Upgrade cost: 50</b></html>"));
@@ -265,11 +281,13 @@ public class MenuPanel extends JPanel{
         Box boxinfoG = Box.createHorizontalBox();
         Box boxinfoT = Box.createHorizontalBox();
         Box boxinfT = Box.createHorizontalBox();
+        Box boxExit = Box.createHorizontalBox();
         
         boxB.setBorder(blackline);
         boxF.setBorder(blackline);
         boxI.setBorder(blackline);
         boxT.setBorder(blackline);
+        boxExit.setBorder(blackline);
 
         box.add(boxB);
         box.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -285,6 +303,7 @@ public class MenuPanel extends JPanel{
         box.add(boxinfoG);
         box.add(boxinfT);
         box.add(boxinfoT);
+        box.add(boxExit);
         
         boxB.add(ballistaButton);
         boxB.add(infBallista);
@@ -315,6 +334,7 @@ public class MenuPanel extends JPanel{
         boxinfoT.add(infoTower);
         boxinfoT.add(Box.createHorizontalGlue());
         
+        boxExit.add(exit);
 
         
         super.add(box);
