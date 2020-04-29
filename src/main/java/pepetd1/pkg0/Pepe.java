@@ -171,12 +171,12 @@ public class Pepe extends Sprite{
 
         switch(debuff.getType()){
             case ICE:
-            this.removeWeakness(ELECTRIC);
+            this.removeWeakness(ElementalType.ELECTRIC);
             this.speed *= 2;
             break;
 
             case ELECTRIC:
-            this.removeWeakness(PHYSICAL);
+            this.removeWeakness(ElementalType.PHYSICAL);
             break;
         }
     }
@@ -210,12 +210,12 @@ public class Pepe extends Sprite{
             break;
 
             case ICE:
-            this.addWeakness(ELECTRIC);
+            this.addWeakness(ElementalType.ELECTRIC);
             this.speed /= 2;
             break;
 
             case ELECTRIC:
-            this.addWeakness(PHYSICAL);
+            this.addWeakness(ElementalType.PHYSICAL);
             break;
         }
     }
