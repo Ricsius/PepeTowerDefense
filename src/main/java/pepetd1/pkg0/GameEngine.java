@@ -79,46 +79,16 @@ public class GameEngine extends JPanel{
                         level.nakedPepes.remove(nakedPepe);
                     }
                 }*/
-                for(int i = 0; i < level.nakedPepes.size(); i++){
-                    level.nakedPepes.get(i).nextPic();
-                    level.inRange(level.nakedPepes.get(i));
-                    if(!level.nakedPepes.get(i).isAlive()){
-                        level.addMoney(level.nakedPepes.get(i).getMoneyReward());
-                        level.nakedPepes.remove(level.nakedPepes.get(i));                        
+
+                for(int i = 0; i < level.pepes.size(); i++){
+                    level.pepes.get(i).nextPic();
+                    level.inRange(level.pepes.get(i));
+                    if(!level.pepes.get(i).isAlive()){
+                        level.addMoney(level.pepes.get(i).getMoneyReward());
+                        level.pepes.remove(level.pepes.get(i));                        
                     }
                 }
-                for(int i = 0; i < level.wizardPepes.size(); i++){
-                    level.wizardPepes.get(i).nextPic();
-                    level.inRange(level.wizardPepes.get(i));
-                    if(!level.wizardPepes.get(i).isAlive()){
-                        level.addMoney(level.wizardPepes.get(i).getMoneyReward());
-                        level.wizardPepes.remove(level.wizardPepes.get(i));                        
-                    }
-                }
-                for(int i = 0; i < level.sonicPepes.size(); i++){
-                    level.sonicPepes.get(i).nextPic();
-                    level.inRange(level.sonicPepes.get(i));
-                    if(!level.sonicPepes.get(i).isAlive()){
-                        level.addMoney(level.sonicPepes.get(i).getMoneyReward());
-                        level.sonicPepes.remove(level.sonicPepes.get(i));                        
-                    }
-                }
-                for(int i = 0; i < level.tankPepes.size(); i++){
-                    level.tankPepes.get(i).nextPic();
-                    level.inRange(level.tankPepes.get(i));
-                    if(!level.tankPepes.get(i).isAlive()){
-                        level.addMoney(level.tankPepes.get(i).getMoneyReward());
-                        level.tankPepes.remove(level.tankPepes.get(i));                        
-                    }
-                }
-                for(int i = 0; i < level.ricardoPepes.size(); i++){
-                    //level.ricardoPepes.get(i).nextPic();
-                    level.inRange(level.ricardoPepes.get(i));
-                    if(!level.ricardoPepes.get(i).isAlive()){
-                        level.addMoney(level.ricardoPepes.get(i).getMoneyReward());
-                        level.ricardoPepes.remove(level.ricardoPepes.get(i));                        
-                    }
-                }
+
                 menu.setGold(level.getMoney());
                 
                 level.towerShoot();
