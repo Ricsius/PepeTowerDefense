@@ -193,12 +193,10 @@ public class Pepe extends Sprite{
     	return this.health;
     }
     
-    //teszthez kell
     public void addResistance(ElementalType elemental) {
     	this.resistantAgaints.add(elemental);
     }
     
-    //teszthez kell
     public void addWeakness(ElementalType elemental) {
     	this.vulnerableAgainst.add(elemental);
     }
