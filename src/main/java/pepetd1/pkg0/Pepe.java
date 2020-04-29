@@ -149,7 +149,7 @@ public class Pepe extends Sprite{
 
     public void updateDebuffStats(){
         foreach(Debuff d : this.debuffs){
-            switch(d.getType())
+            switch(d.getType()){
                 case ElementalType.FIRE:
                 break;
 
@@ -158,6 +158,7 @@ public class Pepe extends Sprite{
 
                 case ElementalType.ELECTRIC:
                 break;
+            }
         }
     }
 
