@@ -147,6 +147,20 @@ public class Pepe extends Sprite{
     	}
     }
 
+    public void updateDebuffStats(){
+        foreach(Debuff d : this.debuffs){
+            switch(d.getType())
+                case ElementalType.FIRE:
+                break;
+
+                case ElementalType.ICE:
+                break;
+
+                case ElementalType.ELECTRIC:
+                break;
+        }
+    }
+
     public void applyDebuff(Debuff debuff){
         this.debuffs.add(debuff);
     }

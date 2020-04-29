@@ -262,6 +262,7 @@ public class GameEngine extends JPanel{
 
             for(int i = 0; i < level.pepes.size(); i++){
                 level.pepes.get(i).move();
+                level.pepes.get(i).updateDebuffStats();
                 if(level.pepes.get(i).getX() == -25 && level.pepes.get(i).isAlive()){
                     level.pepes.remove(i);
                     over = true;
