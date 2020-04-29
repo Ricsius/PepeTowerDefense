@@ -41,7 +41,7 @@ public class LevelTest {
 	public void testConstructor5() throws IOException {
 		Level lvl = new Level("data/level_test1.txt","data/levelPepes1.txt");
 			int pepes = lvl.getPepes().size();
-			Assert.assertTrue("Vannak pepek",pepes == 11);	
+			Assert.assertTrue("Vannak pepek",pepes == 14);	
 	}
 	
 	@Test
