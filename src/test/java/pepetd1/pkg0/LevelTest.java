@@ -33,21 +33,15 @@ public class LevelTest {
 	@Test
 	public void testConstructor4() throws IOException {
 		Level lvl = new Level("data/level_test1.txt","data/levelPepes_test.txt");
-			boolean naked = lvl.getNakeds().isEmpty();
-			boolean wizard = lvl.getWizards().isEmpty();
-			boolean tank = lvl.getTanks().isEmpty();
-			boolean ricardo = lvl.getRicardo().isEmpty();
-			Assert.assertTrue("nincs pepe",naked && wizard && tank && ricardo);
+			boolean pepes = lvl.getPepes().isEmpty();
+			Assert.assertTrue("nincs pepe",pepes);
 	}
 	
 	@Test
 	public void testConstructor5() throws IOException {
 		Level lvl = new Level("data/level_test1.txt","data/levelPepes1.txt");
-			int naked = lvl.getNakeds().size();
-			int wizard = lvl.getWizards().size();
-			int tank = lvl.getTanks().size();
-			int ricardo = lvl.getRicardo().size();
-			Assert.assertTrue("Vannak pepek",naked == 5 && wizard == 3 && tank == 2 && ricardo == 1);	
+			int pepes = lvl.getPepes().size();
+			Assert.assertTrue("Vannak pepek",pepes == 11);	
 	}
 	
 	@Test

@@ -10,11 +10,11 @@ public class GameEngineTest {
 	@Test
 	public void testRestart() {
 		GameEngine ge = new GameEngine();
-		int naked = ge.getLevel().getNakeds().size();
-		ge.getLevel().getNakeds().remove(0);
+		int pepe = ge.getLevel().getPepes().size();
+		ge.getLevel().getPepes().remove(0);
 		ge.restart();
 		Assert.assertTrue("Adatok megvaltoztatasa utan restart visszaallitja az ertekeket",
-				naked == ge.getLevel().getNakeds().size());
+				naked == ge.getLevel().getPepes().size());
 	}
 	
 	@Test
