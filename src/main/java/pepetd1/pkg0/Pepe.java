@@ -148,26 +148,37 @@ public class Pepe extends Sprite{
     }
 
     public void updateDebuffStats(){
-        for(Debuff d : this.debuffs){
-            switch(d.getType()){
-                case FIRE:
-                break;
+        for(Debuff d : this.debuffs){(
+            d.update();
 
-                case ICE:
-                break;
-
-                case ELECTRIC:
-                break;
+            if(d.getCurrentDuration <= 0){
+                this.removeDebuff(d);
+            }
+            else if(d.getCurrentTickTime <= 0){
+                this.debuffEffect(d);
+                d.resetCurrentTickTime();
             }
         }
     }
 
     public void applyDebuff(Debuff debuff){
         this.debuffs.add(debuff);
+        this.debuffEffect(debuff);
     }
 
     public void removeDebuff(Debuff debuff){
         this.debuffs.remove(debuff);
+
+        switch(debuff.getType()){
+            case ICE:
+            this.removeWeakness(ELECTRIC);
+            this.speed *= 2;
+            break;
+
+            case ELECTRIC:
+            this.removeWeakness(PHYSICAL);
+            break;
+        }
     }
 
     public void death(){
@@ -190,5 +201,22 @@ public class Pepe extends Sprite{
     //teszthez kell
     public void addWeakness(ElementalType elemental) {
     	this.vulnerableAgainst.add(elemental);
+    }
+
+    private void debuffEffect(Debuff d){
+        switch(d.getType()){
+            case FIRE:
+            this.takeDamage(5,FIRE);
+            break;
+
+            case ICE:
+            this.addWeakness(ELECTRIC);
+            this.speed /= 2;
+            break;
+
+            case ELECTRIC:
+            this.addWeakness(PHYSICAL);
+            break;
+        }
     }
 }
