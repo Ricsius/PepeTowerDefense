@@ -37,6 +37,7 @@ public class Level {
     ArrayList<Tower> towers;
     private boolean isTowerBuilt;
     //StructurePlacementSpot trash;
+    ArrayList<Pepe> pepes;
     ArrayList<NakedPepe> nakedPepes;
     ArrayList<TankPepe> tankPepes;
     ArrayList<WizardPepe> wizardPepes;
@@ -153,6 +154,7 @@ public class Level {
 
     public void loadPepes(String levelPath) throws FileNotFoundException, IOException {
         BufferedReader br = new BufferedReader(new FileReader(levelPath));
+        pepes = new ArrayList<Pepe>();
         nakedPepes = new ArrayList<NakedPepe>();
         tankPepes = new ArrayList<TankPepe>();
         wizardPepes = new ArrayList<WizardPepe>();
@@ -171,27 +173,36 @@ public class Level {
                     NakedPepe nakedPepe = new NakedPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 60, 30);
                     nakedPepe.updatePic("data/basicPepe2.png", 70, 90);
                     nakedPepes.add(nakedPepe);
+                    pepes.add(nakedPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;
                     
                 }
                 if(type == 't'){
                     Image image = new ImageIcon("data/tank.png").getImage();
-                    tankPepes.add(new TankPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 50, 50));
+                    TankPepe tankPepe = new TankPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 50, 50);
+                    tankPepes.add(tankPepe);
+                    pepes.add(tankPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 'w'){
                     Image image = new ImageIcon("data/wizard.png").getImage();
-                    wizardPepes.add(new WizardPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 30, 30));
+                    WizardPepe wizardPepe = new WizardPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 30, 30);
+                    wizardPepes.add(wizardPepe);
+                    pepes.add(wizardPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 's'){
                     Image image = new ImageIcon("data/sonicpepe.png").getImage();
-                    sonicPepes.add(new SonicPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 20, 20));
+                    SonicPepe sonicPepe = new SonicPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 20, 20);
+                    sonicPepes.add(sonicPepe);
+                    pepes.add(sonicPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 'r'){
                     Image image = new ImageIcon("data/ricardo.png").getImage();
-                    ricardoPepes.add(new RicardoPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 20, 20));
+                    RicardoPepe ricardoPepe = new RicardoPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 20, 20);
+                    ricardoPepes.add(ricardoPepe);
+                    pepes.add(ricardoPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 //x++;
