@@ -16,7 +16,7 @@ public class Pepe extends Sprite{
     private int elementalOffset = 2;
     private int speed;
     
-    //private HashSet<Debuff> debuffs;
+    private HashSet<Debuff> debuffs;
     private HashSet<ElementalType> resistantAgaints;
     private HashSet<ElementalType> vulnerableAgainst;
     private int moneyReward;
