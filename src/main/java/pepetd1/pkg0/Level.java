@@ -38,11 +38,6 @@ public class Level {
     private boolean isTowerBuilt;
     //StructurePlacementSpot trash;
     ArrayList<Pepe> pepes;
-    ArrayList<NakedPepe> nakedPepes;
-    ArrayList<TankPepe> tankPepes;
-    ArrayList<WizardPepe> wizardPepes;
-    ArrayList<SonicPepe> sonicPepes;
-    ArrayList<RicardoPepe> ricardoPepes;
     ArrayList<TowerBullet> towerBullets;
     
     /**
@@ -155,11 +150,6 @@ public class Level {
     public void loadPepes(String levelPath) throws FileNotFoundException, IOException {
         BufferedReader br = new BufferedReader(new FileReader(levelPath));
         pepes = new ArrayList<Pepe>();
-        nakedPepes = new ArrayList<NakedPepe>();
-        tankPepes = new ArrayList<TankPepe>();
-        wizardPepes = new ArrayList<WizardPepe>();
-        sonicPepes = new ArrayList<SonicPepe>();
-        ricardoPepes = new ArrayList<RicardoPepe>();
         int current_height = -150;
         int x = 700;
         //int y = 0;
@@ -172,7 +162,6 @@ public class Level {
                     Image image = new ImageIcon("data/basic.png").getImage();
                     NakedPepe nakedPepe = new NakedPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 60, 30);
                     nakedPepe.updatePic("data/basicPepe2.png", 70, 90);
-                    nakedPepes.add(nakedPepe);
                     pepes.add(nakedPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;
                     
@@ -180,28 +169,24 @@ public class Level {
                 if(type == 't'){
                     Image image = new ImageIcon("data/tank.png").getImage();
                     TankPepe tankPepe = new TankPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 50, 50);
-                    tankPepes.add(tankPepe);
                     pepes.add(tankPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 'w'){
                     Image image = new ImageIcon("data/wizard.png").getImage();
                     WizardPepe wizardPepe = new WizardPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 30, 30);
-                    wizardPepes.add(wizardPepe);
                     pepes.add(wizardPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 's'){
                     Image image = new ImageIcon("data/sonicpepe.png").getImage();
                     SonicPepe sonicPepe = new SonicPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 20, 20);
-                    sonicPepes.add(sonicPepe);
                     pepes.add(sonicPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 'r'){
                     Image image = new ImageIcon("data/ricardo.png").getImage();
                     RicardoPepe ricardoPepe = new RicardoPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 20, 20);
-                    ricardoPepes.add(ricardoPepe);
                     pepes.add(ricardoPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
