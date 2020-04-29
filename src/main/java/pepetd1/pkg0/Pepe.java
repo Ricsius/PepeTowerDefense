@@ -146,9 +146,15 @@ public class Pepe extends Sprite{
             }	
     	}
     }
-    //, ElementalTypeClass Damage){}
-    //public void applyDebuff(Debuff debuff){}
-    //public void removeDebuff(Debuff debuff){}
+
+    public void applyDebuff(Debuff debuff){
+        this.debuffs.add(debuff);
+    }
+
+    public void removeDebuff(Debuff debuff){
+        this.debuffs.remove(debuff);
+    }
+
     public void death(){
         this.alive = false;
     }
