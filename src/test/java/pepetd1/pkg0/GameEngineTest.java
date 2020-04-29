@@ -14,7 +14,7 @@ public class GameEngineTest {
 		ge.getLevel().getPepes().remove(0);
 		ge.restart();
 		Assert.assertTrue("Adatok megvaltoztatasa utan restart visszaallitja az ertekeket",
-				naked == ge.getLevel().getPepes().size());
+				pepe == ge.getLevel().getPepes().size());
 	}
 	
 	@Test
