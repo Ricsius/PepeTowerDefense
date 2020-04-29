@@ -212,7 +212,7 @@ public class Pepe extends Sprite{
     private void debuffEffect(Debuff d){
         switch(d.getType()){
             case FIRE:
-            this.takeDamage(5,FIRE);
+            this.takeDamage(5,ElementalType.FIRE);
             break;
 
             case ICE:
