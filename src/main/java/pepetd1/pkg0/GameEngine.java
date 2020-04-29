@@ -93,7 +93,7 @@ public class GameEngine extends JPanel{
                 
                 level.towerShoot();
                 
-                if(level.nakedPepes.isEmpty() && level.wizardPepes.isEmpty() && level.sonicPepes.isEmpty() && level.tankPepes.isEmpty() && level.ricardoPepes.isEmpty()){
+                if(level.pepes.isEmpty()){
                     	if(wave != 4) {
                     		menu.getWave().setEnabled(true);
                     	}else {
@@ -259,42 +259,11 @@ public class GameEngine extends JPanel{
         @Override
         public void actionPerformed(ActionEvent ae) {
             boolean over = false;
-            for(int i = 0; i < level.nakedPepes.size(); i++){
-                level.nakedPepes.get(i).move();
-                if(level.nakedPepes.get(i).getX() == -25 && level.nakedPepes.get(i).isAlive()){
-                    level.nakedPepes.remove(i);
-                    over = true;
-                }
-            }
-            
-            for(int i = 0; i < level.tankPepes.size(); i++){
-                level.tankPepes.get(i).move();
-                if(level.tankPepes.get(i).getX() == -25 && level.tankPepes.get(i).isAlive()){
-                    level.tankPepes.remove(i);
-                    over = true;
-                }
-            }
-            
-            for(int i = 0; i < level.wizardPepes.size(); i++){
-                level.wizardPepes.get(i).move();
-                if(level.wizardPepes.get(i).getX() == -25 && level.wizardPepes.get(i).isAlive()){
-                    level.wizardPepes.remove(i);
-                    over = true;
-                }
-            }
-            
-            for(int i = 0; i < level.sonicPepes.size(); i++){
-                level.sonicPepes.get(i).move();
-                if(level.sonicPepes.get(i).getX() == -25 && level.sonicPepes.get(i).isAlive()){
-                    level.sonicPepes.remove(i);
-                    over = true;
-                }
-            }
-            
-            for(int i = 0; i < level.ricardoPepes.size(); i++){
-                level.ricardoPepes.get(i).move();
-                if(level.ricardoPepes.get(i).getX() == -25 && level.ricardoPepes.get(i).isAlive()){
-                    level.ricardoPepes.remove(i);
+
+            for(int i = 0; i < level.pepes.size(); i++){
+                level.pepes.get(i).move();
+                if(level.pepes.get(i).getX() == -25 && level.pepes.get(i).isAlive()){
+                    level.pepes.remove(i);
                     over = true;
                 }
             }
