@@ -56,6 +56,10 @@ public class Debuff{
         return this.currentDuration;
     }
 
+    public int getCurrentTickTime(){
+        return this.currentTickTime;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return this.type == ((Debuff)obj).getType();
