@@ -151,10 +151,10 @@ public class Pepe extends Sprite{
         for(Debuff d : this.debuffs){
             d.update();
 
-            if(d.getCurrentDuration <= 0){
+            if(d.getCurrentDuration() <= 0){
                 this.removeDebuff(d);
             }
-            else if(d.getCurrentTickTime <= 0){
+            else if(d.getCurrentTickTime() <= 0){
                 this.debuffEffect(d);
                 d.resetCurrentTickTime();
             }
