@@ -45,9 +45,10 @@ public class TeslaTower extends Tower{
                     currentRechargeTime = 0;
                 }
             }else{
-                Image image = new ImageIcon("data/Arrow.png").getImage();
+                Image image = new ImageIcon("data/thunder.png").getImage();
+                Image image2 = new ImageIcon("data/thunderLeft.png").getImage();
                 if(target.getX() < this.x){
-                    towerBullet = new TowerBullet(this.x, this.y - height / 4, 20, 20, image, 10,  target);
+                    towerBullet = new TowerBullet(this.x, this.y - height / 4, 20, 20, image2, 10,  target);
                     currentRechargeTime = 0;
                 }else{
                     towerBullet = new TowerBullet(this.x + width, this.y - height / 4, 20, 20, image, 10,  target);
