@@ -148,7 +148,7 @@ public class Pepe extends Sprite{
     }
 
     public void updateDebuffStats(){
-        for(Debuff d : this.debuffs){(
+        for(Debuff d : this.debuffs){
             d.update();
 
             if(d.getCurrentDuration <= 0){
