@@ -362,20 +362,8 @@ public class Level {
     	return this.towers;
     }
     
-    public ArrayList getNakeds() {
-    	return this.nakedPepes;
-    }
-    
-    public ArrayList getTanks() {
-    	return this.tankPepes;
-    }
-    
-    public ArrayList getWizards() {
-    	return this.wizardPepes;
-    }
-    
-    public ArrayList getRicardo() {
-    	return this.ricardoPepes;
+    public ArrayList getPepes() {
+    	return this.pepes;
     }
     
     public ArrayList getBullets() {
