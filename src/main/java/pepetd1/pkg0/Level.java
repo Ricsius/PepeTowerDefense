@@ -223,37 +223,12 @@ public class Level {
             }
         }*/
         
-        
-        for(NakedPepe nakedPepe : nakedPepes){
-            if(nakedPepe.isAlive()){
-                nakedPepe.draw(g);
+        for(Pepe pepe : pepes){
+            if(pepe.isAlive()){
+                pepe.draw(g);
             }
         }
         
-        for(TankPepe tankPepe : tankPepes){
-            if(tankPepe.isAlive()){
-                tankPepe.draw(g);
-            }
-            
-        }
-        for(WizardPepe wizardPepe : wizardPepes){
-            if(wizardPepe.isAlive()){
-                wizardPepe.draw(g);
-            }
-            
-        }
-        for(SonicPepe sonicPepe : sonicPepes){
-            if(sonicPepe.isAlive()){
-                sonicPepe.draw(g);
-            }
-            
-        }
-        for(RicardoPepe ricardoPepe : ricardoPepes){
-            if(ricardoPepe.isAlive()){
-                ricardoPepe.draw(g);
-            }
-            
-        }
     }
     
     public StructurePlacementSpot clickedInPlacementSpot(int x, int y){ //MŰKÖDIK, CSAK NEM REPAINTEL
