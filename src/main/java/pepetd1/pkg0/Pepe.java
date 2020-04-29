@@ -201,6 +201,14 @@ public class Pepe extends Sprite{
     	this.vulnerableAgainst.add(elemental);
     }
 
+    public void removeResistance(ElementalType elemental) {
+    	this.resistantAgaints.remove(elemental);
+    }
+    
+    public void removeWeakness(ElementalType elemental) {
+    	this.vulnerableAgainst.remove(elemental);
+    }
+
     private void debuffEffect(Debuff d){
         switch(d.getType()){
             case FIRE:
