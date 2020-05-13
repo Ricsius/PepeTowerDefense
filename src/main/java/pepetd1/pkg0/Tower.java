@@ -13,7 +13,7 @@ import pepetd1.pkg0.Sprite;
 public class Tower extends Sprite{
     //private Pepe target;
     private int range;
-    private int dmg;
+    protected int dmg;
     private int currentLevel;
     protected int rechargeTime;
     protected int currentRechargeTime;
@@ -107,5 +107,14 @@ public class Tower extends Sprite{
     
     public void addTarget(Pepe target){
         targetQueue.add(target);
+    }
+    
+    public Pepe getTarget() {
+    	return targetQueue.get(0);
+    }
+    
+    //teszthez kell
+    public void setRCT() {
+    	this.currentRechargeTime = this.rechargeTime;
     }
 }
