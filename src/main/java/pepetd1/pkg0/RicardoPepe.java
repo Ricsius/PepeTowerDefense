@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author Hege
  */
 public class RicardoPepe extends Pepe{
-    public RicardoPepe(int x, int y, int width, int height, Image image, int health, int moneyReward) throws IOException{
-        super(x,y,width,height,image,health,moneyReward, "data/basicPepe2.png", 70, 90);
+    public RicardoPepe(int x, int y, int width, int height, Image image) throws IOException{
+        super(x,y,width,height,image,1800,300, "data/ricardo.png", 68, 100, null, null);
     }
 }
