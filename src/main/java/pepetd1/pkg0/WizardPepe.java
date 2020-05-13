@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author Hege
  */
 public class WizardPepe extends Pepe{
-    public WizardPepe(int x, int y, int width, int height, Image image, int health, int moneyReward) throws IOException{
-        super(x,y,width,height,image,health,moneyReward, "data/wizard.png", 72, 100);
+    public WizardPepe(int x, int y, int width, int height, Image image) throws IOException{
+        super(x,y,width,height,image,120,50, "data/wizard.png", 72, 100, ElementalType.ICE, ElementalType.ELECTRIC);
     }
 }
