@@ -17,11 +17,12 @@ public class TowerBullet extends Sprite{
     private int dmg;
     private ElementalType elementalType;
     private Pepe target;
-    public TowerBullet(int x, int y, int width, int height, Image image, int dmg, Pepe target){
+    public TowerBullet(int x, int y, int width, int height, Image image, int dmg, Pepe target, ElementalType e){
         super(x, y, width, height, image);
         this.dmg = dmg;
         this.target = target;
         System.out.println("Bullet Spawn");
+        elementalType = e;
     }
     
     public Pepe getTarget(){
