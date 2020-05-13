@@ -28,7 +28,11 @@ public class Level {
     private final int PEPE_WIDTH = 50;
     private final int PEPE_HEIGHT = 50;
     private MenuPanel menu;
-    private final int TOWER_COST = 130; //egyelőre itt van, de bele lesz rakva a toronyba
+    private final int TOWER_COST = 130;
+    private final int BTOWER_COST = 50;
+    private final int FTOWER_COST = 130;
+    private final int ITOWER_COST = 100;
+    private final int TTOWER_COST = 150;
     
     int playerMoney;
     
@@ -37,22 +41,22 @@ public class Level {
     ArrayList<Tower> towers;
     private boolean isTowerBuilt;
     //StructurePlacementSpot trash;
-    ArrayList<NakedPepe> nakedPepes;
-    ArrayList<TankPepe> tankPepes;
-    ArrayList<WizardPepe> wizardPepes;
-    ArrayList<SonicPepe> sonicPepes;
-    ArrayList<RicardoPepe> ricardoPepes;
+    ArrayList<Pepe> pepes;
     ArrayList<TowerBullet> towerBullets;
+    
+    ArrayList<Integer> movementY;
+    ArrayList<Integer> movementX;
     
     /**
      * Konstruktor
      * @param levelPath
      * @throws IOException 
      */
-    public Level(String levelPath, String levelPath2) throws IOException {
+    public Level(String levelPath, String levelPath2, String levelPath3) throws IOException {
         loadLevel(levelPath);
+        loadPepeMovement(levelPath3);
         loadPepes(levelPath2);
-        playerMoney = 800;
+        playerMoney = 350;
         this.isTowerBuilt = false;
         this.towerBullets = new ArrayList<TowerBullet>();
         this.menu = null;
@@ -150,14 +154,33 @@ public class Level {
             y++;
         }
     }
+    
+    public void loadPepeMovement(String levelPath)throws FileNotFoundException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(levelPath));
+        int size = 0;
+        String line;
+        movementY = new ArrayList<Integer>();
+        movementX = new ArrayList<Integer>();
+        
+        while ((line = br.readLine()) != null) {
+            String[] tmp = line.split(" ");
+            movementY.add(Integer.parseInt(tmp[0]));
+            movementX.add(Integer.parseInt(tmp[1]));
+            size++;
+        }
+        
+        for(int k = 0; k < size; k++){
+            System.out.print(movementY.get(k));
+            System.out.print(" ");
+            System.out.print(movementX.get(k));
+            System.out.print('\n');
+        }
+    }
+    
 
     public void loadPepes(String levelPath) throws FileNotFoundException, IOException {
         BufferedReader br = new BufferedReader(new FileReader(levelPath));
-        nakedPepes = new ArrayList<NakedPepe>();
-        tankPepes = new ArrayList<TankPepe>();
-        wizardPepes = new ArrayList<WizardPepe>();
-        sonicPepes = new ArrayList<SonicPepe>();
-        ricardoPepes = new ArrayList<RicardoPepe>();
+        pepes = new ArrayList<Pepe>();
         int current_height = -150;
         int x = 700;
         //int y = 0;
@@ -168,37 +191,51 @@ public class Level {
                 System.out.println(type);
                 if(type == 'n'){
                     Image image = new ImageIcon("data/basic.png").getImage();
-                    NakedPepe nakedPepe = new NakedPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 60, 30);
+                    NakedPepe nakedPepe = new NakedPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image);
                     nakedPepe.updatePic("data/basicPepe2.png", 70, 90);
-                    nakedPepes.add(nakedPepe);
+                    pepes.add(nakedPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;
                     
                 }
                 if(type == 't'){
                     Image image = new ImageIcon("data/tank.png").getImage();
-                    tankPepes.add(new TankPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 50, 50));
+                    TankPepe tankPepe = new TankPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image);
+                    pepes.add(tankPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 'w'){
                     Image image = new ImageIcon("data/wizard.png").getImage();
-                    wizardPepes.add(new WizardPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 30, 30));
+                    WizardPepe wizardPepe = new WizardPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image);
+                    pepes.add(wizardPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 's'){
                     Image image = new ImageIcon("data/sonicpepe.png").getImage();
-                    sonicPepes.add(new SonicPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 20, 20));
+                    SonicPepe sonicPepe = new SonicPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image);
+                    pepes.add(sonicPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 if(type == 'r'){
                     Image image = new ImageIcon("data/ricardo.png").getImage();
-                    ricardoPepes.add(new RicardoPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image, 20, 20));
+                    RicardoPepe ricardoPepe = new RicardoPepe(x, current_height, PEPE_WIDTH, PEPE_HEIGHT, image);
+                    pepes.add(ricardoPepe);
                     current_height -= PEPE_HEIGHT * 3 / 2;;
                 }
                 //x++;
             }
             //y++;
+            
+        }
+        setPepePath(movementX, movementY);
+    }
+        
+    public void setPepePath(ArrayList<Integer> movementX, ArrayList<Integer> movementY){
+        for(Pepe pepe : pepes){
+            pepe.setMovements(movementX, movementY); 
         }
     }
+    
+    
     /**
      * Kirajzolja a Basket, Ranger, Obstacle tömböt a pályára
      * @param g 
@@ -227,44 +264,19 @@ public class Level {
             }
         }*/
         
-        
-        for(NakedPepe nakedPepe : nakedPepes){
-            if(nakedPepe.isAlive()){
-                nakedPepe.draw(g);
+        for(Pepe pepe : pepes){
+            if(pepe.isAlive()){
+                pepe.draw(g);
             }
         }
         
-        for(TankPepe tankPepe : tankPepes){
-            if(tankPepe.isAlive()){
-                tankPepe.draw(g);
-            }
-            
-        }
-        for(WizardPepe wizardPepe : wizardPepes){
-            if(wizardPepe.isAlive()){
-                wizardPepe.draw(g);
-            }
-            
-        }
-        for(SonicPepe sonicPepe : sonicPepes){
-            if(sonicPepe.isAlive()){
-                sonicPepe.draw(g);
-            }
-            
-        }
-        for(RicardoPepe ricardoPepe : ricardoPepes){
-            if(ricardoPepe.isAlive()){
-                ricardoPepe.draw(g);
-            }
-            
-        }
     }
     
-    public StructurePlacementSpot clickedInPlacementSpot(int x, int y){ //MŰKÖDIK, CSAK NEM REPAINTEL
+    public StructurePlacementSpot clickedInPlacementSpot(int x, int y, int cost){ //MŰKÖDIK, CSAK NEM REPAINTEL
         StructurePlacementSpot tempSpot = null;
         boolean ret = false;
         
-        if(this.playerMoney >= TOWER_COST){ //megnézi itt is, hogy van-e elég pénz :))))) ez tuti meg kell jobban oldani
+        if(this.playerMoney >= cost){ //megnézi itt is, hogy van-e elég pénz :))))) ez tuti meg kell jobban oldani
             for (int i = 0; i < structurePlacementSpots.size(); i++)
             {
                 if(structurePlacementSpots.get(i).inside(x, y)){
@@ -285,7 +297,7 @@ public class Level {
         
         for (int i = 0; i < towers.size(); i++)
         {
-            if(towers.get(i).inside(x, y)){
+            if(towers.get(i).inside(x, y) && playerMoney >= 100){
                 tempTower = towers.get(i);
                 //return spot;
                 //towers.remove(tempTower);
@@ -308,56 +320,40 @@ public class Level {
     }*/
     
     public Tower createIceTower(int x, int y){
-        if(this.playerMoney > TOWER_COST){  //megnézi, van-e elég pénz
             Image image = new ImageIcon("data/towerIce.png").getImage();
-            IceTower t = new IceTower(x, y, image, 150, 3);
+            IceTower t = new IceTower(x, y, image);
             setIsTowerBuilt(true);
             towers.add(t);
             //this.playerMoney = playerMoney - TOWER_COST;
             return t;   
-        }else{
-            return null;
-        }
     }
     
     public Tower createFireTower(int x, int y){
-        if(this.playerMoney > TOWER_COST){ //megnézi, van-e elég pénz
             Image image = new ImageIcon("data/towerFire.png").getImage();
-            FireTower t = new FireTower(x, y, image, 150, 3);
+            FireTower t = new FireTower(x, y, image);
             setIsTowerBuilt(true);
             towers.add(t);
             //this.playerMoney = playerMoney - TOWER_COST;
             return t;   
-        }else{
-            return null;
-        }
     }
     
     public Tower createBallistaTower(int x, int y){
-        if(this.playerMoney > TOWER_COST){ //megnézi, van-e elég pénz
             Image image = new ImageIcon("data/towerBallista.png").getImage();
             BallistaTower t;
-            t = new BallistaTower(x, y, image, 200, 4);
+            t = new BallistaTower(x, y, image);
             setIsTowerBuilt(true);
             towers.add(t);
             //this.playerMoney = playerMoney - TOWER_COST;
             return t;   
-        }else{
-            return null;
-        }
     }
     
     public Tower createTeslaTower(int x, int y){
-        if(this.playerMoney > TOWER_COST){ //megnézi, van-e elég pénz
             Image image = new ImageIcon("data/towerTesla.png").getImage();
-            TeslaTower t = new TeslaTower(x, y, image, 150, 2);
+            TeslaTower t = new TeslaTower(x, y, image);
             setIsTowerBuilt(true);
             towers.add(t);
             //this.playerMoney = playerMoney - TOWER_COST;
             return t;   
-        }else{
-            return null;
-        }
     }
     
     public StructurePlacementSpot deleteTower(Tower t){
@@ -391,20 +387,8 @@ public class Level {
     	return this.towers;
     }
     
-    public ArrayList getNakeds() {
-    	return this.nakedPepes;
-    }
-    
-    public ArrayList getTanks() {
-    	return this.tankPepes;
-    }
-    
-    public ArrayList getWizards() {
-    	return this.wizardPepes;
-    }
-    
-    public ArrayList getRicardo() {
-    	return this.ricardoPepes;
+    public ArrayList getPepes() {
+    	return this.pepes;
     }
     
     public ArrayList getBullets() {
