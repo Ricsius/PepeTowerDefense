@@ -115,5 +115,5 @@ public class PepeTest {
 		Assert.assertTrue("Nem sebezhetobb ellene, belehal", pepe.getHealth() == before-10 && !pepe.isAlive());;
 	}
 	
-	//MOZGAS TESZT!!
+	//MOZGÁS TESZT!!
 }
