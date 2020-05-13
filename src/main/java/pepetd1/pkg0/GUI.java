@@ -39,8 +39,8 @@ public class GUI{
     private MusicPlayer player;
 
     public GUI(){
-    	player = new MusicPlayer();
-    	player.playMusic("data/theme.wav");
+    	//player = new MusicPlayer();
+    	//player.playMusic("data/theme.wav");
         
         ImageIcon img = new ImageIcon("data/iconversion1.png");
 
@@ -130,7 +130,7 @@ public class GUI{
                         frame.setPreferredSize( new Dimension(950, 600));
                         frame.pack();
                         frame.setVisible(true);
-                        player.stopMusic();
+                        //player.stopMusic();
                     }
                 });
                 
@@ -145,7 +145,7 @@ public class GUI{
                         frame.setPreferredSize( new Dimension(950, 600));
                         frame.pack();
                         frame.setVisible(true);
-                        player.stopMusic();
+                        //player.stopMusic();
                     }
                 });
                 
@@ -160,7 +160,7 @@ public class GUI{
                         frame.setPreferredSize( new Dimension(950, 600));
                         frame.pack();
                         frame.setVisible(true);
-                        player.stopMusic();
+                        //player.stopMusic();
                     }
                 });
                 
@@ -175,7 +175,7 @@ public class GUI{
                         frame.setPreferredSize( new Dimension(950, 600));
                         frame.pack();
                         frame.setVisible(true);
-                        player.stopMusic();
+                        //player.stopMusic();
                     }
                 });
                 levelSelectMenu.setLayout(null);
