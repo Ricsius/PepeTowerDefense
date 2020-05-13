@@ -36,7 +36,7 @@ public class GUI{
     private JButton quitButton;
     private MainMenu mainMenu;
     private LevelSelectMenu levelSelectMenu;
-    private MusicPlayer player;
+    //private MusicPlayer player;
 
     public GUI(){
     	//player = new MusicPlayer();
