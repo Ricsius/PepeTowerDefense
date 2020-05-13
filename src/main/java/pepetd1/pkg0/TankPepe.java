@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author Hege
  */
 public class TankPepe extends Pepe{
-    public TankPepe(int x, int y, int width, int height, Image image, int health, int moneyReward) throws IOException{
-        super(x,y,width,height,image,health,moneyReward, "data/tank.png", 158, 100);
+    public TankPepe(int x, int y, int width, int height, Image image) throws IOException{
+        super(x,y,width,height,image,450,60, "data/tank.png", 158, 100, ElementalType.PHYSICAL, ElementalType.FIRE);
     }
 }
