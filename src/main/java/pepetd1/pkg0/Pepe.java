@@ -7,6 +7,7 @@ package pepetd1.pkg0;
 
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Pepe extends Sprite{
@@ -23,8 +24,10 @@ public class Pepe extends Sprite{
     private int pathIndex;
     protected AnimationHandler animationHandler;
     private boolean alive;
+    ArrayList<Integer> movementY;
+    ArrayList<Integer> movementX;
     
-    public Pepe(int x, int y, int width, int height, Image image, int health, int moneyReward, String imagePath, int frameWidth, int frameHeight) throws IOException{
+    public Pepe(int x, int y, int width, int height, Image image, int health, int moneyReward, String imagePath, int frameWidth, int frameHeight, ElementalType r, ElementalType v) throws IOException{
         super(x,y,width,height,image);
         this.health = health;
         this.moneyReward = moneyReward;
@@ -33,7 +36,9 @@ public class Pepe extends Sprite{
         this.alive = true;
         animationHandler = new AnimationHandler(imagePath, frameWidth, frameHeight);
         this.resistantAgaints = new HashSet<>();
+        resistantAgaints.add(r);
         this.vulnerableAgainst = new HashSet<>();
+        vulnerableAgainst.add(v);
     }
     
     //teszthez kell
@@ -47,6 +52,11 @@ public class Pepe extends Sprite{
         animationHandler = null;
         this.resistantAgaints = new HashSet<>();
         this.vulnerableAgainst = new HashSet<>();
+    }
+    
+    public void setMovements(ArrayList<Integer> movementX, ArrayList<Integer> movementY){
+        this.movementX = movementX;
+        this.movementY = movementY;
     }
     
     public void updatePic(String imgPath, int frameWidth, int frameHeight) throws IOException{
@@ -75,54 +85,28 @@ public class Pepe extends Sprite{
     }
 
     public void move(){
-        y += vely;
-        if(y == 100){
-            vely = 0;
+        //int velxSave = this.velx;
+        //int velySave = this.vely;
+        //System.out.println(this.movementY.get(0));
+        //System.out.println(this.movementX.get(0));
+        
+        if(this.x == this.movementX.get(this.movementX.size()-1) || this.y == this.movementY.get(this.movementY.size()-1)){
             velx = 1;
-            x -= velx;
-            if(x == 600){
-                velx = 0;
-                vely = 1;
-                y += vely;
-            }
-        }
-        if(y == 150){
             vely = 0;
-            velx = 1;
-            x -= velx;
-            if(x == 350){
-                velx = 0;
-                vely = 1;
-                y += vely;
-            }
-        }
-        if(y == 200){
-            vely = 0;
-            velx = 1;
-            x -= velx;
-            if(x == 100){
-                velx = 0;
-                vely = 1;
-                y += vely;
-            }
-        }
-        if(y == 250){
-            vely = 0;
-            velx = 1;
-            x -= velx;
-            if(x == 50){
-                velx = 0;
-                vely = 1;
-                y += vely;
-            }
-        }
-        if(y == 300){
-            vely = 0;
-            velx = 1;
-            x -= velx;
-            if(x == 0){
-                velx = 0;
-                vely = 0;
+            this.x -= velx;
+        }else{
+            this.y += vely;
+            for(int i = 0; i < this.movementX.size(); i++){
+                if(this.y == this.movementY.get(i)){
+                    vely = 0;
+                    velx = 1;
+                    this.x -= velx;
+                    if(this.x == this.movementX.get(i)){
+                        velx = 0;
+                        vely = 1;
+                        this.y += vely;
+                    }
+                }
             }
         }
     }
@@ -147,12 +131,38 @@ public class Pepe extends Sprite{
     	}
     }
 
+    public void updateDebuffStats(){
+        for(Debuff d : this.debuffs){
+            d.update();
+
+            if(d.getCurrentDuration() <= 0){
+                this.removeDebuff(d);
+            }
+            else if(d.getCurrentTickTime() <= 0){
+                this.debuffEffect(d);
+                d.resetCurrentTickTime();
+            }
+        }
+    }
+
     public void applyDebuff(Debuff debuff){
         this.debuffs.add(debuff);
+        this.debuffEffect(debuff);
     }
 
     public void removeDebuff(Debuff debuff){
         this.debuffs.remove(debuff);
+
+        switch(debuff.getType()){
+            case ICE:
+            this.removeWeakness(ElementalType.ELECTRIC);
+            this.speed *= 2;
+            break;
+
+            case ELECTRIC:
+            this.removeWeakness(ElementalType.PHYSICAL);
+            break;
+        }
     }
 
     public void death(){
@@ -167,13 +177,36 @@ public class Pepe extends Sprite{
     	return this.health;
     }
     
-    //teszthez kell
     public void addResistance(ElementalType elemental) {
     	this.resistantAgaints.add(elemental);
     }
     
-    //teszthez kell
     public void addWeakness(ElementalType elemental) {
     	this.vulnerableAgainst.add(elemental);
+    }
+
+    public void removeResistance(ElementalType elemental) {
+    	this.resistantAgaints.remove(elemental);
+    }
+    
+    public void removeWeakness(ElementalType elemental) {
+    	this.vulnerableAgainst.remove(elemental);
+    }
+
+    private void debuffEffect(Debuff d){
+        switch(d.getType()){
+            case FIRE:
+            this.takeDamage(5,ElementalType.FIRE);
+            break;
+
+            case ICE:
+            this.addWeakness(ElementalType.ELECTRIC);
+            this.speed /= 2;
+            break;
+
+            case ELECTRIC:
+            this.addWeakness(ElementalType.PHYSICAL);
+            break;
+        }
     }
 }
