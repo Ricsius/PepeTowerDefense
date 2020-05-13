@@ -14,13 +14,17 @@ import javax.swing.ImageIcon;
  * @author Andras
  */
 public class BallistaTower extends Tower{
-    public BallistaTower(int x, int y, Image image, int range, int rechargeTime){
-        super(x,y,image,range,rechargeTime,10);
+    public BallistaTower(int x, int y, Image image){
+        super(x,y,image,200,4,10);
+    }
+    
+    public BallistaTower(int x, int y, Image image,int r){
+        super(x,y,image,r,4,10);
     }
     
     public boolean upgrade(){
         if(this.getCurrentLevel() != 3){
-            this.changeValues(0, 1, 1);
+            this.changeValues(1, 25, 1);
             if(this.getCurrentLevel() == 1){
                 this.setCurrentLevel(2);
                 super.changeImage(new ImageIcon("data/towerBallista2.png").getImage());
@@ -48,10 +52,10 @@ public class BallistaTower extends Tower{
                 Image image = new ImageIcon("data/Arrow.png").getImage();
                 Image image2 = new ImageIcon("data/ArrowLeft.png").getImage();
                 if(target.getX() < this.x){
-                    towerBullet = new TowerBullet(this.x, this.y, 50, 30, image2, 30, target);
+                    towerBullet = new TowerBullet(this.x, this.y, 50, 30, image2, super.dmg, target, ElementalType.PHYSICAL);
                     currentRechargeTime = 0;
                 }else{
-                    towerBullet = new TowerBullet(this.x + width, this.y, 50, 30, image, 30, target);
+                    towerBullet = new TowerBullet(this.x + width, this.y, 50, 30, image, super.dmg, target, ElementalType.PHYSICAL);
                     currentRechargeTime = 0;
                 }
                 
