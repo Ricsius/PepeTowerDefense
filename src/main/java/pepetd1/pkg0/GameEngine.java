@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.swing.Timer;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -47,13 +48,21 @@ public class GameEngine extends JPanel{
     private boolean upgrade;
     
     private int wave;
+    private int levelCounter;
     
-    private final int TOWER_COST = 130; //egyelre itt van, de bele lesz rakva a toronyba
+    boolean over;
     
-    public GameEngine(){
+    private final int TOWER_COST = 130;
+    private final int BTOWER_COST = 50;
+    private final int FTOWER_COST = 130;
+    private final int ITOWER_COST = 100;
+    private final int TTOWER_COST = 150;
+    
+    public GameEngine(int levelCounter){
         super();
+
+        background = new ImageIcon("data/Png.png").getImage();
         
-        background = new ImageIcon("data/grass.png").getImage();
         
         ice = false;
         fire = false;
@@ -62,7 +71,11 @@ public class GameEngine extends JPanel{
         delete = true;
         upgrade = false;
         
+        over = false;
+        
         wave = 1;
+        
+        this.levelCounter = levelCounter;
         
         this.menu = new MenuPanel(this);
         restart();
@@ -79,64 +92,37 @@ public class GameEngine extends JPanel{
                         level.nakedPepes.remove(nakedPepe);
                     }
                 }*/
-                for(int i = 0; i < level.nakedPepes.size(); i++){
-                    level.nakedPepes.get(i).nextPic();
-                    level.inRange(level.nakedPepes.get(i));
-                    if(!level.nakedPepes.get(i).isAlive()){
-                        level.addMoney(level.nakedPepes.get(i).getMoneyReward());
-                        level.nakedPepes.remove(level.nakedPepes.get(i));                        
+
+                for(int i = 0; i < level.pepes.size(); i++){
+                    level.pepes.get(i).nextPic();
+                    level.inRange(level.pepes.get(i));
+                    if(!level.pepes.get(i).isAlive()){
+                        level.addMoney(level.pepes.get(i).getMoneyReward());
+                        level.pepes.remove(level.pepes.get(i));                        
                     }
                 }
-                for(int i = 0; i < level.wizardPepes.size(); i++){
-                    level.wizardPepes.get(i).nextPic();
-                    level.inRange(level.wizardPepes.get(i));
-                    if(!level.wizardPepes.get(i).isAlive()){
-                        level.addMoney(level.wizardPepes.get(i).getMoneyReward());
-                        level.wizardPepes.remove(level.wizardPepes.get(i));                        
-                    }
-                }
-                for(int i = 0; i < level.sonicPepes.size(); i++){
-                    level.sonicPepes.get(i).nextPic();
-                    level.inRange(level.sonicPepes.get(i));
-                    if(!level.sonicPepes.get(i).isAlive()){
-                        level.addMoney(level.sonicPepes.get(i).getMoneyReward());
-                        level.sonicPepes.remove(level.sonicPepes.get(i));                        
-                    }
-                }
-                for(int i = 0; i < level.tankPepes.size(); i++){
-                    level.tankPepes.get(i).nextPic();
-                    level.inRange(level.tankPepes.get(i));
-                    if(!level.tankPepes.get(i).isAlive()){
-                        level.addMoney(level.tankPepes.get(i).getMoneyReward());
-                        level.tankPepes.remove(level.tankPepes.get(i));                        
-                    }
-                }
-                for(int i = 0; i < level.ricardoPepes.size(); i++){
-                    //level.ricardoPepes.get(i).nextPic();
-                    level.inRange(level.ricardoPepes.get(i));
-                    if(!level.ricardoPepes.get(i).isAlive()){
-                        level.addMoney(level.ricardoPepes.get(i).getMoneyReward());
-                        level.ricardoPepes.remove(level.ricardoPepes.get(i));                        
-                    }
-                }
+
                 menu.setGold(level.getMoney());
                 
                 level.towerShoot();
                 
-                if(level.nakedPepes.isEmpty() && level.wizardPepes.isEmpty() && level.sonicPepes.isEmpty() && level.tankPepes.isEmpty() && level.ricardoPepes.isEmpty()){
-                    	if(wave != 4) {
-                    		menu.getWave().setEnabled(true);
-                    	}else {
-                            if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "YOU WON",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){               
-                            	restart();
-                            }else{
-                                System.exit(-1);
-                            }
-                    	}
-                        
+                if(level.pepes.isEmpty()){
+                    if(wave != 5) {
+                   		menu.getWave().setEnabled(true);
+                   	}else {
+                   		if(levelCounter == 3){
+                   		/*	ImageIcon win = new ImageIcon("data/win.png");
+                   			JOptionPane.showMessageDialog(null,"You have beaten PepeTD™ 2020.05.13. All rights to me.","YOU DID NOT DIE! CONGRATS!",JOptionPane.INFORMATION_MESSAGE,win);              
+                   	   		System.exit(-1);*/
+                   		}else{
+                   			restart();
+                   		}
+                            
+                   	}      
                 }
             }
         });
+        
         
         newFrameTimer.start();
         movementTimer.start();
@@ -153,19 +139,44 @@ public class GameEngine extends JPanel{
     }
     
     public void newWave() {
+    	boolean asdasd = false;
+        if(wave < 4 ) {
         	wave++;
-        	System.out.println("WAVE:" + wave);
-                try {
-                	level.loadPepes("data/levelPepes" + wave + ".txt");
-                } catch (IOException ex) {
-                    Logger.getLogger(GameEngine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-                }		
+        }else {
+        	asdasd = true;
+        }
+        System.out.println("WAVE:" + wave);
+        try {
+        	if(asdasd) {
+        		wave = 5;
+        		levelCounter++;
+            }else {
+            	level.loadPepes("data/levelPepes" + wave + ".txt");
+            }
+        	//level.loadPepes("data/levelPepes" + wave + ".txt");
+        } catch (IOException ex) {
+            Logger.getLogger(GameEngine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }		
+        
+        
     }
     
     public void restart() {
         try {
         	wave = 1;
-            level = new Level("data/level.txt", "data/levelPepes1.txt");
+        	if(over) {
+        		//levelCounter--;
+        		over = false;
+        	}
+        	if(levelCounter <= 3) {
+        		level = new Level("data/level" + this.levelCounter + ".txt", "data/levelPepes1.txt", "data/level" + this.levelCounter + "move.txt");
+        	}else {
+        		ImageIcon win = new ImageIcon("data/win.png");
+       			JOptionPane.showMessageDialog(null,"You have beaten PepeTD™ 2020.05.13. All rights to me.","YOU DID NOT DIE! CONGRATS!",JOptionPane.INFORMATION_MESSAGE,win);              
+       	   		System.exit(-1);
+        	}
+            
+            //levelCounter++;
             //levelPepes = new LevelPepes("data/levelPepes.txt");
         } catch (IOException ex) {
             Logger.getLogger(GameEngine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -184,7 +195,7 @@ public class GameEngine extends JPanel{
             Tower tow = level.clickedInTower(x,y);
             if(tow != null){
                 level.deleteTower(tow);
-                level.addMoney(75 + tow.getCurrentLevel() * 25);
+                level.addMoney(25 + tow.getCurrentLevel() * 25);
                 System.out.println(tow.getX());
                 System.out.println(tow.getY());
             }     
@@ -193,34 +204,39 @@ public class GameEngine extends JPanel{
                 Tower tow = level.clickedInTower(x,y);
                 if(tow != null){
                     if(tow.upgrade()){
-                        level.cutMoney(50);   //csak akkor vonja le a pnzt, ha tnyleg tudtunk upgradelni
+                        level.cutMoney(100);  //csak akkor vonja le a pnzt, ha tnyleg tudtunk upgradelni
                     }else{
                         System.out.println("Maxos a torony");
                     }
                 }                 
             }else{
-                StructurePlacementSpot struct = level.clickedInPlacementSpot(x, y);
+            	int cost = 0;
+            	if(fire) cost = FTOWER_COST;
+            	if(ice) cost = ITOWER_COST;
+            	if(ballista) cost = BTOWER_COST;
+            	if(tesla) cost = TTOWER_COST;
+                StructurePlacementSpot struct = level.clickedInPlacementSpot(x, y, cost);
                 if(struct != null && ballista){
                     level.createBallistaTower(struct.getX(), struct.getY()-80);
-                    level.cutMoney(TOWER_COST);
+                    level.cutMoney(BTOWER_COST);
                     System.out.println(struct.getX());
                     System.out.println(struct.getY());
                 }
                 if(struct != null && tesla){
                     level.createTeslaTower(struct.getX(), struct.getY()-80);
-                    level.cutMoney(TOWER_COST);
+                    level.cutMoney(TTOWER_COST);
                     System.out.println(struct.getX());
                     System.out.println(struct.getY());
                 }
                 if(struct != null && fire){
                     level.createFireTower(struct.getX(), struct.getY()-80);
-                    level.cutMoney(TOWER_COST);
+                    level.cutMoney(FTOWER_COST);
                     System.out.println(struct.getX());
                     System.out.println(struct.getY());
                 }
                 if(struct != null && ice){
                     level.createIceTower(struct.getX(), struct.getY()-80);
-                    level.cutMoney(TOWER_COST);
+                    level.cutMoney(ITOWER_COST);
                     System.out.println(struct.getX());
                     System.out.println(struct.getY());                
                 }
@@ -288,43 +304,12 @@ public class GameEngine extends JPanel{
         
         @Override
         public void actionPerformed(ActionEvent ae) {
-            boolean over = false;
-            for(int i = 0; i < level.nakedPepes.size(); i++){
-                level.nakedPepes.get(i).move();
-                if(level.nakedPepes.get(i).getX() == -25 && level.nakedPepes.get(i).isAlive()){
-                    level.nakedPepes.remove(i);
-                    over = true;
-                }
-            }
-            
-            for(int i = 0; i < level.tankPepes.size(); i++){
-                level.tankPepes.get(i).move();
-                if(level.tankPepes.get(i).getX() == -25 && level.tankPepes.get(i).isAlive()){
-                    level.tankPepes.remove(i);
-                    over = true;
-                }
-            }
-            
-            for(int i = 0; i < level.wizardPepes.size(); i++){
-                level.wizardPepes.get(i).move();
-                if(level.wizardPepes.get(i).getX() == -25 && level.wizardPepes.get(i).isAlive()){
-                    level.wizardPepes.remove(i);
-                    over = true;
-                }
-            }
-            
-            for(int i = 0; i < level.sonicPepes.size(); i++){
-                level.sonicPepes.get(i).move();
-                if(level.sonicPepes.get(i).getX() == -25 && level.sonicPepes.get(i).isAlive()){
-                    level.sonicPepes.remove(i);
-                    over = true;
-                }
-            }
-            
-            for(int i = 0; i < level.ricardoPepes.size(); i++){
-                level.ricardoPepes.get(i).move();
-                if(level.ricardoPepes.get(i).getX() == -25 && level.ricardoPepes.get(i).isAlive()){
-                    level.ricardoPepes.remove(i);
+        	
+            for(int i = 0; i < level.pepes.size(); i++){
+                level.pepes.get(i).move();
+                //level.pepes.get(i).updateDebuffStats();
+                if(level.pepes.get(i).getX() == -25 && level.pepes.get(i).isAlive()){
+                    level.pepes.remove(i);
                     over = true;
                 }
             }
@@ -333,9 +318,10 @@ public class GameEngine extends JPanel{
                 if(level.towerBullets.get(i).followTarget()) level.towerBullets.remove(i);     
             }
             repaint();
-            if(over){                 
+            if(over){
                 if((JOptionPane.showConfirmDialog(null, "Do you want to start a New Game?", "GAME OVER",JOptionPane.YES_NO_OPTION))==JOptionPane.YES_OPTION){
                 	restart();
+                	menu.getWave().setEnabled(false);
                 }else{
                     System.exit(-1);
                 }
@@ -348,7 +334,6 @@ public class GameEngine extends JPanel{
     public Level getLevel() {
     	return this.level;
     }
-
 }
 
 //if(level.towerBullets.get(i).followTarget()) level.towerBullets.remove(i);     
