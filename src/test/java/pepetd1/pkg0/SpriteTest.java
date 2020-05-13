@@ -20,7 +20,7 @@ public class SpriteTest {
     	Sprite sprite1 = new Sprite(0,0,3,3,null);
     	Sprite sprite2 = new Sprite(2,2,2,2,null);
     	
-    	Assert.assertTrue("Egymast fedo spriteok, tenyleg fedik egymast", sprite1.meet(sprite2));
+    	Assert.assertTrue("Egymást fedő spriteok, tényleg fedik egymást", sprite1.meet(sprite2));
     }
     
     @Test
@@ -28,7 +28,7 @@ public class SpriteTest {
     	Sprite sprite1 = new Sprite(0,0,2,2,null);
     	Sprite sprite2 = new Sprite(2,2,2,2,null);
     	
-    	Assert.assertFalse("Egymast erinto spriteok, nem fedik egymast", sprite1.meet(sprite2));
+    	Assert.assertFalse("Egymást érintő spriteok, nem fedik egymást", sprite1.meet(sprite2));
     }
     
     @Test
@@ -36,7 +36,7 @@ public class SpriteTest {
     	Sprite sprite1 = new Sprite(0,0,2,2,null);
     	Sprite sprite2 = new Sprite(0,2,2,2,null);
     	
-    	Assert.assertFalse("Egymast erinto spriteok (egysz oldal), nem fedik egymast", sprite1.meet(sprite2));
+    	Assert.assertFalse("Egymást érintő spriteok (egyész oldal), nem fedik egymást", sprite1.meet(sprite2));
     }
     
     @Test
@@ -44,7 +44,7 @@ public class SpriteTest {
     	Sprite sprite1 = new Sprite(0,0,2,2,null);
     	Sprite sprite2 = new Sprite(2,0,2,2,null);
     	
-    	Assert.assertFalse("Egymast erinto spriteok (masik egysz oldal), nem fedik egymast", sprite1.meet(sprite2));
+    	Assert.assertFalse("Egymást érintő spriteok (másik egyész oldal), nem fedik egymást", sprite1.meet(sprite2));
     }
     
     @Test
@@ -52,6 +52,6 @@ public class SpriteTest {
     	Sprite sprite1 = new Sprite(0,0,1,1,null);
     	Sprite sprite2 = new Sprite(5,4,2,2,null);
     	
-    	Assert.assertFalse("Egymast nem fedo spriteok, tenyleg nem fedik egymast", sprite1.meet(sprite2));
+    	Assert.assertFalse("Egymást nem fedő spriteok, tényleg nem fedik egymást", sprite1.meet(sprite2));
     }   
 }
