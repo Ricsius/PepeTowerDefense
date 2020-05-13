@@ -35,8 +35,12 @@ public class GUI{
     private JButton playButton;
     private JButton quitButton;
     private MainMenu mainMenu;
+    private LevelSelectMenu levelSelectMenu;
+    private MusicPlayer player;
 
     public GUI(){
+    	player = new MusicPlayer();
+    	player.playMusic("data/theme.wav");
         
         ImageIcon img = new ImageIcon("data/iconversion1.png");
 
@@ -64,6 +68,7 @@ public class GUI{
         mainMenu.add(exit);
 
         frame = new MouseListenerHandler(null);
+        frame.setTitle("PepeTD");
         frame.setIconImage(img.getImage());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(mainMenu);
@@ -74,14 +79,116 @@ public class GUI{
         play.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameEngine = new GameEngine();
+                levelSelectMenu = new LevelSelectMenu();
                 frame.remove(mainMenu);
-                frame.addGameEngine(gameEngine);
-                frame.getContentPane().add(gameEngine);
-                frame.getContentPane().add(BorderLayout.EAST,gameEngine.getMenu());
-                frame.setPreferredSize( new Dimension(950, 600));
+                frame.addLevelSelectMenu(levelSelectMenu);
+                
+                JButton level1 = new JButton("Level 1");
+                level1.setBackground(new Color(0, 0, 0));
+                level1.setFont(new Font("arial", Font.BOLD, 25));
+                level1.setForeground(Color.white);
+                level1.setBounds(187, 197, 170, 50);
+                level1.setOpaque(false);
+                level1.setContentAreaFilled(false);
+                level1.setBorderPainted(false);
+                
+                JButton level2 = new JButton("Level 2");
+                level2.setBackground(new Color(0, 0, 0));
+                level2.setFont(new Font("arial", Font.BOLD, 25));
+                level2.setForeground(Color.white);
+                level2.setBounds(600, 197, 170, 50);
+                level2.setOpaque(false);
+                level2.setContentAreaFilled(false);
+                level2.setBorderPainted(false);
+                
+                JButton level3 = new JButton("Level 3");
+                level3.setBackground(new Color(0, 0, 0));
+                level3.setFont(new Font("arial", Font.BOLD, 25));
+                level3.setForeground(Color.white);
+                level3.setBounds(182, 493, 170, 50);
+                level3.setOpaque(false);
+                level3.setContentAreaFilled(false);
+                level3.setBorderPainted(false);
+                
+                JButton level4 = new JButton("Level 4");
+                level4.setBackground(new Color(0, 0, 0));
+                level4.setFont(new Font("arial", Font.BOLD, 25));
+                level4.setForeground(Color.white);
+                level4.setBounds(610, 496, 170, 50);
+                level4.setOpaque(false);
+                level4.setContentAreaFilled(false);
+                level4.setBorderPainted(false);
+                
+                level1.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        gameEngine = new GameEngine(0);
+                        frame.remove(levelSelectMenu);
+                        frame.addGameEngine(gameEngine);
+                        frame.getContentPane().add(gameEngine);
+                        frame.getContentPane().add(BorderLayout.EAST,gameEngine.getMenu());
+                        frame.setPreferredSize( new Dimension(950, 600));
+                        frame.pack();
+                        frame.setVisible(true);
+                        player.stopMusic();
+                    }
+                });
+                
+                level2.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        gameEngine = new GameEngine(1);
+                        frame.remove(levelSelectMenu);
+                        frame.addGameEngine(gameEngine);
+                        frame.getContentPane().add(gameEngine);
+                        frame.getContentPane().add(BorderLayout.EAST,gameEngine.getMenu());
+                        frame.setPreferredSize( new Dimension(950, 600));
+                        frame.pack();
+                        frame.setVisible(true);
+                        player.stopMusic();
+                    }
+                });
+                
+                level3.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        gameEngine = new GameEngine(2);
+                        frame.remove(levelSelectMenu);
+                        frame.addGameEngine(gameEngine);
+                        frame.getContentPane().add(gameEngine);
+                        frame.getContentPane().add(BorderLayout.EAST,gameEngine.getMenu());
+                        frame.setPreferredSize( new Dimension(950, 600));
+                        frame.pack();
+                        frame.setVisible(true);
+                        player.stopMusic();
+                    }
+                });
+                
+                level4.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        gameEngine = new GameEngine(3);
+                        frame.remove(levelSelectMenu);
+                        frame.addGameEngine(gameEngine);
+                        frame.getContentPane().add(gameEngine);
+                        frame.getContentPane().add(BorderLayout.EAST,gameEngine.getMenu());
+                        frame.setPreferredSize( new Dimension(950, 600));
+                        frame.pack();
+                        frame.setVisible(true);
+                        player.stopMusic();
+                    }
+                });
+                levelSelectMenu.setLayout(null);
+                levelSelectMenu.add(level1);
+                levelSelectMenu.add(level2);
+                levelSelectMenu.add(level3);
+                levelSelectMenu.add(level4);
+                
+                frame.getContentPane().add(levelSelectMenu);
+                frame.setPreferredSize( new Dimension(810, 639));
                 frame.pack();
                 frame.setVisible(true);
+
             }
         });
         
@@ -90,31 +197,9 @@ public class GUI{
             public void actionPerformed(ActionEvent e) {
                 System.exit(-1);
             }
-        });
-        
-        /*gameEngine = new GameEngine();
-        //menu = new MenuPanel(gameEngine);
-        //this.gameEngine.attachMenu(menu);
-        
-        frame = new MouseListenerHandler(this.gameEngine);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        frame.setIconImage(img.getImage());
-        
-        frame.getContentPane().add(gameEngine);
-        frame.getContentPane().add(BorderLayout.EAST,gameEngine.getMenu());
-        
-        frame.setPreferredSize( new Dimension(900, 600));
-        frame.pack();
-        frame.setVisible(true);*/
-
+        });    	
     }
-    /*public void mouseClicked(MouseEvent e) {  
-        System.out.println(e.getX());
-    }  
-    public void mouseEntered(MouseEvent e) {}  
-    public void mouseExited(MouseEvent e) {}  
-    public void mousePressed(MouseEvent e) {}  
-    public void mouseReleased(MouseEvent e) {}*/ 
+
+
     
 }
