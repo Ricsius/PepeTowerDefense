@@ -264,11 +264,11 @@ public class MenuPanel extends JPanel{
     });
 
     
-	    JLabel infBallista = new JLabel(("<html><b>Cost: 130</b><br> <br><b>Upgrade cost: 50</b></html>"));
+	    JLabel infBallista = new JLabel(("<html><b>Cost: 50</b><br> <br><b>Upgrade cost: 100</b></html>"));
 	    infBallista.setPreferredSize(new Dimension(100,100));
-	    JLabel infFire =new JLabel(("<html><b>Cost: 130</b><br><br><b>Upgrade cost: 50</b></html>"));
-	    JLabel infIce = new JLabel(("<html><b>Cost: 130</b><br><br><b>Upgrade cost: 50</b></html>"));
-	    JLabel infTesla = new JLabel(("<html><b>Cost: 130</b><br><br><b>Upgrade cost: 50</b></html>"));
+	    JLabel infFire =new JLabel(("<html><b>Cost: 130</b><br><br><b>Upgrade cost: 100</b></html>"));
+	    JLabel infIce = new JLabel(("<html><b>Cost: 100</b><br><br><b>Upgrade cost: 100</b></html>"));
+	    JLabel infTesla = new JLabel(("<html><b>Cost: 150</b><br><br><b>Upgrade cost: 100</b></html>"));
     
         Box box = Box.createVerticalBox(); // vertical box
         JLabel Empty = new JLabel("");
