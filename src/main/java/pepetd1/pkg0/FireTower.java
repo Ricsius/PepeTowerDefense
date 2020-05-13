@@ -14,13 +14,17 @@ import javax.swing.ImageIcon;
  * @author Andras
  */
 public class FireTower extends Tower{
-    public FireTower(int x, int y, Image image, int range, int rechargeTime){
-        super(x,y,image,range,rechargeTime,25);
+    public FireTower(int x, int y, Image image){
+        super(x,y,image,150,3,35);
+    }
+    
+    public FireTower(int x, int y, Image image, int r){
+        super(x,y,image,r,3,35);
     }
     
     public boolean upgrade(){
         if(this.getCurrentLevel() != 3){
-            this.changeValues(0, 1, 1);
+            this.changeValues(30, 5, 1);
             if(this.getCurrentLevel() == 1){
                 this.setCurrentLevel(2);
                 super.changeImage(new ImageIcon("data/towerFire2.png").getImage());
@@ -48,10 +52,10 @@ public class FireTower extends Tower{
                 Image image = new ImageIcon("data/FireBall.png").getImage();
                 Image image2 = new ImageIcon("data/FireBallLeft.png").getImage();
                 if(target.getX() < this.x){
-                    towerBullet = new TowerBullet(this.x, this.y + height / 4, 50, 40, image2, 30,  target);
+                    towerBullet = new TowerBullet(this.x, this.y + height / 4, 50, 40, image2, super.dmg, target, ElementalType.FIRE);
                     currentRechargeTime = 0;
                 }else{
-                    towerBullet = new TowerBullet(this.x + width, this.y + height / 4, 50, 40, image, 30,  target);
+                    towerBullet = new TowerBullet(this.x + width, this.y + height / 4, 50, 40, image, super.dmg, target, ElementalType.FIRE);
                     currentRechargeTime = 0;
                 }
                 
