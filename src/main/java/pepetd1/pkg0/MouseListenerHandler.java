@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 
 public class MouseListenerHandler extends JFrame implements MouseListener{
     private GameEngine engine;
+    private LevelSelectMenu lsm;
     
     MouseListenerHandler(GameEngine ge){  
         addMouseListener(this);
@@ -24,6 +25,10 @@ public class MouseListenerHandler extends JFrame implements MouseListener{
     
     public void addGameEngine(GameEngine gameEngine){
         this.engine = gameEngine;
+    }
+    
+    public void addLevelSelectMenu(LevelSelectMenu lsm){
+        this.lsm = lsm;
     }
     
     @Override
