@@ -39,9 +39,13 @@ public class Debuff{
         }
     }
 
+    public void resetCurrentTickTime(){
+        this.currentTickTime = this.maxTickTime;
+    }
+
     public void reset(){
         this.currentDuration = this.maxDuration;
-        this.currentTickTime = this.maxTickTime;
+        this.resetCurrentTickTime();
     }
 
     public ElementalType getType(){
@@ -50,6 +54,10 @@ public class Debuff{
 
     public int getCurrentDuration(){
         return this.currentDuration;
+    }
+
+    public int getCurrentTickTime(){
+        return this.currentTickTime;
     }
 
     @Override
